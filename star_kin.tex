@@ -6,7 +6,7 @@
 %\usepackage{float} % Not installed
 %\usepackage{multirow} % Not installed
 %\usepackage[section]{placeins} % Not installed - think is for floatbarrier command
-%\usepackage{cite}
+\usepackage{cite}
 %\usepackage{natbib}
 
 
@@ -20,12 +20,12 @@
 \begin{document}
 
 \title{Low-powered Radio Galaxies: Stellar Kinematics}
-\author{Joshua Warren}%, Martin Bureau, Bernd Hasemann, Isabella Prandoni, Francesco Santoro, Robert Laing, Paola Parma, Hans de Ruiter and Arturo Mignano}
+\author{Joshua Warren, Martin Bureau, Bernd Hasemann, Isabella Prandoni, Francesco Santoro, Robert Laing, Paola Parma, Hans de Ruiter and Arturo Mignano}
 \date{Oxford, \today}
 
-\begin{abstract}
-lkl
-\end{abstract}
+%\begin{abstract}
+%lkl
+%\end{abstract}
 
 \maketitle
 
@@ -41,15 +41,16 @@ lkl
 	\label{sec:obs}
 	\subsection{The VIsable Multi-Object Spectrograph (VIMOS)}
 		\label{subsec:VIMOS}
-		The sample was observed with the VIsable Multi-Object Spectrograph (VIMOS), mounted on UT3 on the VLT in Paranel, using the new (at the time) HR Blue grism. All observations were taken with a spacital resolution of 0.67". Each object was imaged with a total integration time of ______________ equally spread over three observing blocks. Each block contained all of the necessary calibration images (3 flat fields and 1 He & Ne arc lamp image for wavelength calibration), as well as two science pointings. In addition, VIMOS provides 5 bias images per night. 
+		The sample was observed with the VIsable Multi-Object Spectrograph (VIMOS), mounted on UT3 on the VLT in Paranel, using the new (at the time) HR Blue grism. All observations were taken with a spacital resolution of 0.67". Each object was imaged with a total integration time of \_\_\_\_\_\_\_\_\_\_\_\_\_\_ equally spread over three observing blocks. Each block contained all of the necessary calibration images (3 flat fields and 1 He and Ne arc lamp image for wavelength calibration), as well as two science pointings. In addition, VIMOS provides 5 bias images per night. 
 
-		VIMOS has several when known, though not well understood technical issues. These include several low transmission fibres, strong flexure and large differences in sensitivity across its 4 quadrants.
+		VIMOS has several when known, though not well understood technical issues. These include several low transmission fibres, strong flexure and large differences in sensitivity across its 4 separate detectors, known as quadrants.
 
 	\subsection{Data Reduction}
 		\label{subsec:reduct}
-		The data reduction pipeline was produced using Py3D, a suite of programs based on those developed for Califa DR1 (\cite{Sanchez2012a}, \cite{Husemann2013b}) and later updated for VIMOS \cite{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as low transmission pixels fibres and strong flexsure. The standard reduction steps are outlined in \cite{Sanchez2012a}, while the VIMOS specific modifications are detailed in \cite{Husemann2014}. 
+		The data reduction pipeline was produced using Py3D, a suite of programs based on those developed for Califa DR1 (\cite{Sanchez2011}, \cite{Husemann2013}) and later updated for VIMOS \cite{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as low transmission pixels fibres and strong flexsure. The standard reduction steps are outlined in \cite{Sanchez2011}, while the VIMOS specific modifications are detailed in \cite{Husemann2014}. 
 
-		After inspecting the reduced data cubes, it was noted that most of the outer fibres had no (or very low) transmission. Given the observations were all centally located on the field of view, the outer 2 rows of fibres on each edge were able to be discarded to leave a final cube of the central 36 x 36 fibres or a field of view of 24.1 x 24.1 arcsecs. 
+		After inspecting the reduced data cubes, it was noted that most of the outer fibres had no (or very low) transmission. Given the observations were all centally located on the field of view, the outer 2 rows of fibres on each edge were able to be discarded to leave a final cube of the central 36 x 36 fibres or a field of view of 24.1 x 24.1 arcsecs. A low readout at the edges of the spectrum meant that the wavelength range was also cut to 4200 - 5300 \AA. This also removed any effect where the different quadrants had differing wavelength ranges (e.g. only one quadrant reached the H$_\alpha$ emission line). 
+
 \section{Kinematics}
 	\label{sec:kine}
 
@@ -61,6 +62,8 @@ lkl
 
 
 
-%\bibliographystyle{aip}
+\bibliographystyle{aip}
 
-%\bibliography{bib}
+\bibliography{bib}{}
+
+\end{document}
