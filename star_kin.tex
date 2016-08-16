@@ -1,30 +1,30 @@
 \documentclass[a4paper,11pt]{article}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{amssymb}
-\usepackage{verbatim}
-\usepackage{float}
-\usepackage{multirow}
-\usepackage[section]{placeins}
+%\usepackage{amsmath}
+%\usepackage{graphicx}
+%\usepackage{amssymb}
+%\usepackage{verbatim}
+%\usepackage{float} % Not installed
+%\usepackage{multirow} % Not installed
+%\usepackage[section]{placeins} % Not installed - think is for floatbarrier command
 %\usepackage{cite}
 %\usepackage{natbib}
 
 
-\numberwithin{equation}{section}
+%\numberwithin{equation}{section}
 
-\newcommand{\nocontentsline}[3]{}
-\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+%\newcommand{\nocontentsline}[3]{}
+%\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
 %\allowdisplaybreaks
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
 \begin{document}
 
 \title{Low-powered Radio Galaxies: Stellar Kinematics}
-\author{Joshua Warren, Martin Bureau, Bernd Hasemann, Isabella Prandoni, Francesco Santoro, Robert Laing, Paola Parma, Hans de Ruiter and Arturo Mignano}
+\author{Joshua Warren}%, Martin Bureau, Bernd Hasemann, Isabella Prandoni, Francesco Santoro, Robert Laing, Paola Parma, Hans de Ruiter and Arturo Mignano}
 \date{Oxford, \today}
 
 \begin{abstract}
-
+lkl
 \end{abstract}
 
 \maketitle
@@ -35,14 +35,21 @@
 
 \section{Sample Description}
 	\label{sec:samp}
-	jdsjsdjfsdsd.
-	sdkksd
+	khjkhjhk
 
-	sdklfjks
+\section{Observing stratagy and Data Reduction}
+	\label{sec:obs}
+	\subsection{The VIsable Multi-Object Spectrograph (VIMOS)}
+		\label{subsec:VIMOS}
+		The sample was observed with the VIsable Multi-Object Spectrograph (VIMOS), mounted on UT3 on the VLT in Paranel, using the new (at the time) HR Blue grism. All observations were taken with a spacital resolution of 0.67". Each object was imaged with a total integration time of ______________ equally spread over three observing blocks. Each block contained all of the necessary calibration images (3 flat fields and 1 He & Ne arc lamp image for wavelength calibration), as well as two science pointings. In addition, VIMOS provides 5 bias images per night. 
 
-\section{Data Reduction}
-	\label{sec:reduct}
+		VIMOS has several when known, though not well understood technical issues. These include several low transmission fibres, strong flexure and large differences in sensitivity across its 4 quadrants.
 
+	\subsection{Data Reduction}
+		\label{subsec:reduct}
+		The data reduction pipeline was produced using Py3D, a suite of programs based on those developed for Califa DR1 (\cite{Sanchez2012a}, \cite{Husemann2013b}) and later updated for VIMOS \cite{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as low transmission pixels fibres and strong flexsure. The standard reduction steps are outlined in \cite{Sanchez2012a}, while the VIMOS specific modifications are detailed in \cite{Husemann2014}. 
+
+		After inspecting the reduced data cubes, it was noted that most of the outer fibres had no (or very low) transmission. Given the observations were all centally located on the field of view, the outer 2 rows of fibres on each edge were able to be discarded to leave a final cube of the central 36 x 36 fibres or a field of view of 24.1 x 24.1 arcsecs. 
 \section{Kinematics}
 	\label{sec:kine}
 
@@ -54,6 +61,6 @@
 
 
 
-\bibliographystyle{aip}
+%\bibliographystyle{aip}
 
-\bibliography{bib}
+%\bibliography{bib}
