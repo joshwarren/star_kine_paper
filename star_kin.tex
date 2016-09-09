@@ -23,7 +23,7 @@
 \author{Joshua Warren, Martin Bureau, Bernd Hasemann, Isabella Prandoni, Francesco Santoro, Robert Laing, Paola Parma, Hans de Ruiter and Arturo Mignano}
 \date{Oxford, \today}
 
-%\begin{abstract}
+%\begin{abstract}bib
 %lkl
 %\end{abstract}
 
@@ -35,7 +35,10 @@
 
 \section{Sample Description}
 	\label{sec:samp}
-	
+	The sample was first set out in \cite{Prandoni2010}. The Parkes 2.7 GHz survey was used as the parent sample to identify radio galaxies. This imposed a declination range of $-14\deg < \delta < -40\deg$ and a flux density limit of 0.25 Jy in the 2.7 GHz band. The additional criteria was an associated early type galaxy (ETG) host which is at $z<0.03$. This left 11 sources, which hereafter will be refered to as the Southern Sample. All display an FRI morphology with low to intermediate radio power.
+
+	Of this sample, 10 were observed with the APEX single dish telescope for CO, with the remaining host (NGC 1316) already obsevered in \cite{Horellou2001}. All were detected and are given in \cite{Prandoni2010}. These detections have since been followed up with ALMA images (not yet released). 
+
 
 \section{Observing stratagy and Data Reduction}
 	\label{sec:obs}
@@ -47,11 +50,12 @@
 
 	\subsection{Data Reduction}
 		\label{subsec:reduct}
-		The data reduction pipeline was produced using Py3D, a suite of programs based on those developed for Califa DR1 (\cite{Sanchez2011}, \cite{Husemann2013}) and later updated for VIMOS \cite{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as low transmission pixels fibres and strong flexsure. The standard reduction steps are outlined in \cite{Sanchez2011}, while the VIMOS specific modifications are detailed in \cite{Husemann2014}. 
+		The data reduction pipeline was produced using Py3D, a suite of programs based on those developed for Califa DR1 (\cite{Sanchez2011}, \cite{Husemann2013}) and later updated for VIMOS \cite{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as low transmission pixels fibres and strong flexure. The standard reduction steps are outlined in \cite{Sanchez2011}, while the VIMOS specific modifications are detailed in \cite{Husemann2014}. 
 
 		After inspecting the reduced data cubes, it was noted that most of the outer fibres had no (or very low) transmission. Given the observations were all centally located on the field of view, the outer 2 rows of fibres on each edge were able to be discarded to leave a final cube of the central 36 x 36 fibres or a field of view of 24.1 x 24.1 arcsecs. The image was then binned using Voronoi Binning technique \cite{Cappellari2003}. A low readout at the edges of the spectrum meant that the wavelength range was cut to ~ 4200 - 5300 \AA. This was computed algorthmically as the point at which the spectrum fell by 20\% across 4 pixels. This was deemed to be a sharp enough cut off that it would be unlikely to arrise in the emitted spectrum. Below the calcium doublet, the obseved spectrum tended to become unresponsive and so a hard cut lower cut was applied at 4200 \AA. When calculatig total flux or any parameter dependant on total flux, only the wavelength range common to all bins was used.
 
 		Following this the cubes were analised using the pPXF package by Cappellari and Emsellem \cite{Cappellari2004} to find a best fit spectrum by stacking the Miles empirical stellar spectrums \cite{Miles} convolved with a line-of-sight velocity distribusion (LOSVD) given by a gaussian-like distribution, allowed to vary up to the 4th Gauss-Hermite moment (i.e. the LOSVD could be characterised by 4 parameters: recessional velocity, $v$; velocity dispersion, $\sigma$ and the 3rd and 4th Gauss-Hermite momenents, $h_3$ and $h_4$). This fit was done within a Monty Carlo (MC) method to allow accurate estimation of the uncertainties in these values. Emission lines were simultansously fitted with the same method, but using a gaussian spectrum for the template, and as such will not effect the results here. The kinematics of the gas systems will be presented in a future paper \cite{warren2017}. 
+
 \section{Kinematics}
 	\label{sec:kine}
 
