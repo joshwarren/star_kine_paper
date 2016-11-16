@@ -1,14 +1,19 @@
-\documentclass[a4paper,11pt]{article}
+%\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,fleqn,usenatbib,useAMS]{mnras}
 %\usepackage{amsmath}
-%\usepackage{graphicx}
+\usepackage{graphicx} % For figures
+\usepackage{subcaption} % for multiple plots in one figures - allows caption and referencing plots and figures
+
 %\usepackage{amssymb}
 %\usepackage{verbatim}
 %\usepackage{float} % Not installed
 %\usepackage{multirow} % Not installed
-%\usepackage[section]{placeins} % Not installed - think is for floatbarrier command
-\usepackage{cite}
+\usepackage[section]{placeins} % Not installed - think is for floatbarrier command
+%\usepackage{cite}
 %\usepackage{natbib}
-
+%\usepackage{newtxtext,newtxmath} % Times font as in MNRAS
+\usepackage{mathptmx}
+\usepackage{txfonts}
 
 %\numberwithin{equation}{section}
 
@@ -32,59 +37,141 @@
 
 \section{Introduction}
 	\label{sec:intro}
+	There are known to be strong scaling relations between the mass of the central supermassive black-hole (SMBH) and the global properties in a given galaxy. These are generally understood to be connected by feedback processes, where large amounts of gas within the galaxy cools, falls on the SMBH. Here the black-hole imparts energy to the gas, causing outflows (or jets) and/or thermal emission. We observe this as an Active Galactic Nuclei (AGN) which can have distinctive emission across the electromagnetic spectrum. The exact mechanisms are still remains and open question, with much theoretical and observational work ongoing. The AGN can then effect the outer parts of the galaxy, by methods just as fountain effects, thermal heating and shock created by the outflows.
+
+	In this paper we consider radio galaxies (RGs) i.e. galaxies detected with an associated radio source, in particular FR I/FR II type. While star formation can give a radio continuum, it is accepted that centrally consentrated radio emission as in FR I galaxies must be accossiated to synchrotron emission in a jet from the AGN. Hereafter the term RG will refer to AGN type RGs rather than star forming.	While there is broad consensus the brightest RGs are caused when a massive galaxy merges with a gas rich galaxy (a wet merger) giving a plentiful fuel reservoir to the AGN \cite{Baum1992}, there is much more debate when it comes to dimmer RGs. Suggestions fall into two categories: external origin of the gas source e.g. a smaller wet merger or accretion from the hot X-ray component of Inter-Galactic Medium (IGM) via Bondi accretion \cite{Allen2006}; or internal sources such as stellar winds within the galaxy or simply from existing cold gas reservoirs \cite{Prandoni2010}. This project aims to add to this discussion using Integral Field Unit (IFU) observations in the visible band of nearby radio galaxies and comparing this with Atlas-3D sample \cite{Cappellari2011} as a control sample.
+
+% More to add to intro - e.g. summery of paper 
 
 \section{Sample Description}
 	\label{sec:samp}
-	The sample was first set out in \cite{Prandoni2010}. The Parkes 2.7 GHz survey was used as the parent sample to identify radio galaxies. This imposed a declination range of $-14\deg < \delta < -40\deg$ and a flux density limit of 0.25 Jy in the 2.7 GHz band. The additional criteria was an associated early type galaxy (ETG) host which is at $z<0.03$. This left 11 sources, which hereafter will be refered to as the Southern Sample. All display an FRI morphology with low to intermediate radio power.
+	The sample was first set out in \citet{Prandoni2010}. The Parkes 2.7 GHz survey was used as the parent sample to identify radio galaxies. This imposed a declination range of $-14\deg < \delta < -40\deg$ and a flux density limit of 0.25 Jy in the 2.7 GHz band. The additional criteria was an associated early type galaxy (ETG) host which is at $z<0.03$. This left 11 sources, which hereafter will be refered to as the Southern Sample. All display an FRI morphology with low to intermediate radio power.
 
-	Of this sample, 10 were observed with the APEX single dish telescope for CO, with the remaining host (NGC 1316) already obsevered in \cite{Horellou2001}. All were detected and are given in \cite{Prandoni2010}. These detections have since been followed up with ALMA images (not yet released). 
+	Of this sample, 10 were observed with the APEX single dish telescope for CO, with the remaining host (NGC 1316) already obsevered in \citet{Horellou2001}. All were detected and are given in \citet{Prandoni2010}. These detections have since been followed up with ALMA images (not yet released). 
 
 
 \section{Observing stratagy and Data Reduction}
 	\label{sec:obs}
 	\subsection{The VIsable Multi-Object Spectrograph (VIMOS)}
 		\label{subsec:VIMOS}
-		The sample was observed with the VIsable Multi-Object Spectrograph (VIMOS), mounted on UT3 on the VLT in Paranel, using the new (at the time) HR Blue grism. All observations were taken with a spacital resolution of 0.67". Each object was imaged with a total integration time of \_\_\_\_\_\_\_\_\_\_\_\_\_\_ equally spread over three observing blocks. Each block contained all of the necessary calibration images (3 flat fields and 1 He and Ne arc lamp image for wavelength calibration), as well as two science pointings. In addition, VIMOS provides 5 bias images per night. 
+		The sample was observed with the VIsable Multi-Object Spectrograph (VIMOS), mounted on UT3 on the VLT in Paranal, using the new (at the time) HR Blue grism. All observations were taken with a spacial resolution of 0.67". Each object was imaged with a total integration time of 102 mins equally spread over three observing blocks. Each block contained all of the necessary calibration images (3 flat fields and 1 He and Ne arc lamp image for wavelength calibration), as well as two science pointings. In addition, VIMOS provides 5 bias images per night. 
 
-		VIMOS has several well known, though not well understood technical issues. These include several low transmission (bad) fibres, strong flexure and large differences in sensitivity across its 4 separate detectors, known as quadrants. These are addressed by a specialist data reduction pipeline as described in Section \ref{subsec:reduct}. 
+		VIMOS has several well known, though not well understood technical issues. These include several low transmission (bad) fibers, strong flexure and large differences in sensitivity across its 4 separate detectors, known as quadrants. These are addressed by a specialist data reduction pipeline as described in Section \ref{subsec:reduct}. 
 
 	\subsection{Data Reduction}
 		\label{subsec:reduct}
-		The data reduction pipeline was produced using Py3D, a suite of programs based on those developed for Califa DR1 (\cite{Sanchez2011}, \cite{Husemann2013}) and later updated for VIMOS \cite{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as bad fibres and strong flexure. A brief outline is the additional steps to accounts for these is given below, while detailed desciptions can be found in \cite{Sanchez2011} for the standard reduction steps and \cite{Husemann2014} for the VIMOS specific modifications. 
+		The data reduction pipeline was produced using Py3D, a suite of programs based on those developed for Califa DR1 (\citep{Sanchez2011}, \citep{Husemann2013}) and later updated for VIMOS \citep{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as bad fibres and strong flexure. A brief outline is the additional steps to accounts for these is given below, while detailed desciptions can be found in \citet{Sanchez2011} for the standard reduction steps and \citep{Husemann2014} for the VIMOS specific modifications. 
 		\begin{itemize}
-		\item The known bad pixels and flexure offsets are included when completing the wavelength calibration. In testing, this was found to be robust except for the blue end of the spectrum ($\lambda < 4300 \AA$) when using the blue HR gisam \cite{Husemann2014}. Indeed, we found that the spectrum below 4200\AA was strongly supressed and was therefore discarded.
+		\item The known bad pixels and flexure offsets are included when completing the wavelength calibration. In testing, this was found to be robust except for the blue end of the spectrum ($\lambda < 4300 \AA$) when using the blue HR gisam \citep{Husemann2014}. Indeed, we found that the spectrum below 4200\AA was strongly supressed and was therefore discarded.
 		\item Flexure also gives an offset to flat-fielding and while this known to be only upto $\pm0.5$pixels, this is also taken into account.
-		\item The dense packing of the fibres onto the CCD means that cross-talk is occurs and is extracted using \cite{Horne1986}. 
+		\item The dense packing of the fibres onto the CCD means that cross-talk is occurs and is extracted using \citep{Horne1986}. 
 		\end{itemize}
-		All of the above steps are detailed in Section 2.3 in \cite{Husemann2014}.
+		All of the above steps are detailed in Section 2.3 in \citet{Husemann2014}.
 
-		After inspecting the reduced data cubes, it was noted that most of the outer fibres had no (or very low) transmission. Given the observations were all centally located on the field of view, the outer 2 rows of fibres on each edge were able to be discarded to leave a final cube of the central 36 x 36 fibres or a field of view of 24.1 x 24.1 arcsecs. The image was then binned using Voronoi Binning technique \cite{Cappellari2003}. As stated above, a low readout at the edges of the spectrum meant that the wavelength range was cut to $\sim 4200 - 5300 \AA$. This was computed algorthmically as the point at which the spectrum fell by 20\% across 4 pixels. This was deemed to be a sharp enough cut off that it would be unlikely to arrise in the emitted spectrum. Below about the calcium line, Ca4227, the obseved spectrum tended to become unresponsive and so a hard cut lower cut was applied at 4200 \AA. When calculatig total flux or any parameter dependant on total flux, only the wavelength range common to all bins was used, otherwise this was computered indervidually for each bin in order to preseve as much as infomation as possible.
+		After inspecting the reduced data cubes, it was noted that most of the outer fibres had no (or very low) transmission. Given the observations were all centally located on the field of view, the outer 2 rows of fibres on each edge were able to be discarded to leave a final cube of the central 36 x 36 fibres or a field of view of 24.1 x 24.1 arcsecs. The image was then binned using Voronoi Binning technique \citep{Cappellari2003}. As stated above, a low readout at the edges of the spectrum meant that the wavelength range was cut to $\sim 4200 - 5300 \AA$. This was computed algorthmically as the point at which the spectrum fell by 20\% across 4 pixels. This was deemed to be a sharp enough cut off that it would be unlikely to arrise in the emitted spectrum. Below about the calcium line, Ca4227, the obseved spectrum tended to become unresponsive and so a hard cut lower cut was applied at 4200 \AA. When calculatig total flux or any parameter dependant on total flux, only the wavelength range common to all bins was used, otherwise this was computered indervidually for each bin in order to preseve as much as infomation as possible.
 
-		Following this the cubes were analised using the pPXF package by Cappellari and Emsellem \cite{Cappellari2004} to find a best fit spectrum by stacking the Miles empirical stellar spectrums \cite{Miles} convolved with a line-of-sight velocity distribusion (LOSVD) given by a gaussian-like distribution, allowed to vary up to the 4th Gauss-Hermite moment (i.e. the LOSVD could be characterised by 4 parameters: recessional velocity, $v$; velocity dispersion, $\sigma$ and the 3rd and 4th Gauss-Hermite momenents, $h_3$ and $h_4$). This fit was done within a Monty Carlo (MC) method to allow accurate estimation of the uncertainties in these values. Emission lines were simultansously fitted with the same method, but using a gaussian spectrum for the template, and as such will not effect the results here. The kinematics of the gas systems will be presented in a future paper \cite{warren2017}. 
+		Following this the cubes were analised using the pPXF package \citep{Cappellari2004} to find a best fit spectrum by stacking the Miles empirical stellar spectrums \citep{Sanchez-Blazquez2006} convolved with a line-of-sight velocity distribusion (LOSVD) given by a gaussian-like distribution, allowed to vary up to the 4th Gauss-Hermite moment (i.e. the LOSVD could be characterised by 4 parameters: recessional velocity, $v$; velocity dispersion, $\sigma$ and the 3rd and 4th Gauss-Hermite momenents, $h_3$ and $h_4$). This fit was done within a Monty Carlo (MC) method to allow accurate estimation of the uncertainties in these values. Emission lines were simultansously fitted with the same method, but using a gaussian spectrum for the template, and as such will not effect the results here. The kinematics of the gas systems will be presented in a future paper \citep{warren2017}. % is this normal? 
 
 \section{Kinematics}
 	\label{sec:kine}
-	The following briefly describe the observations and results of each of the sample.
+	The kinematics of the sample are classified according to the Regular-Rotator/Non Regular-Rotator (RR/NRR) regime given in \citet{Krajnovic2011}, Fast/Slow Rotator (FR/SR) regime given in \citet{Cappellari2016} (origionally defined by \citet{Emsellem2011}, but later refined by \citet{Cappellari2016}). Beyond this attempts have been made to use the kinematic features as defined in \citet{Krajnovic2011}, however the quality of the data has meant that many have had to be classified by eye as the artifacts from the VIMOS quadrents confuse any ellipse fitting methods. 
 
-	\paragraph{IC 1459} is a known to contain a kinematically decoupled core (KDC). This is clearly seen in our velocity map (fig \cite(fig:)).
+	The following briefly describe the observations and results of each of the sample. It is also worth noting that many maps have been clipped in the color axis, to allow the more detailed structures to not be overwhelmed by the extremes. 
 
-	\paragraph{IC 1531}
+	\paragraph{IC 1459} is a known to contain a KDC. This is clearly seen in our velocity map (Fig. \ref{subfig:ic1459}).
 
-	\paragraph{IC 4296}
+	\paragraph{IC 1531} seems to contain either a KDC (though not a particularly clear one) or a KT, though both of these observations may be due to quadrant effects. We define it as unclassifiable. This galaxy has a very sparse detection of oxygen (OIII) which appears concentrated in the center.
 
-	\paragraph{NGC 0612}
+	\paragraph{IC 4296} appears to have KT, though this may be a quadrant feature. It has strong OIII and NI detects, which are strongly peaked at the center of the galaxy, while the hydrogen is more dispersed. There is potentially 2 peaks in all of the gas intensity maps, which is not seen in the image (total flux/collapsed cube).
 
-	\paragraph{NGC 1399}
+	\paragraph{NGC 0612} has a large dust lane to the west of the apparent center of the galaxy. This is seen as a lower velocity dispersion (Fig \ref{fig:ngc0612_sig}). Dust lanes generally imply a disky galaxy and indeed this is seem here as map shows has NF. 
 
-	\paragraph{NGC 3100}
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[width=0.5\textwidth]{ngc0612_sig.png}
+		\caption{Velocity Dispersion map for NGC 0612. The dust lane shows up as a vertical feature with a reduced Velocity Dispersion, just to the right of center.}
+		\label{fig:ngc0612_sig}
+	\end{figure}
 
-	\paragraph{NGC 3557}
+	\paragraph{NGC 1399} is known to have kinematic twist (see MUSE map in \citet{Zieleniewski2017}), however this is not visible in our map. This is partly due to the twist being on a scale of about the VIMOS field of view and partly due to the quadrant features in our maps. We have used this classification none the less. 
 
-	\paragraph{NGC 7075}
+	\paragraph{NGC 3100} is has NF. It has very little oxygen detected (via the OIII line), though what little is detected, is clearly in the outer parts of the galaxy (not in the very center).
 
-	\paragraph{PKS 0718-34}
+	\paragraph{NGC 3557} is known to be Fast Rotator with very high velocities, especially considering it's size, and NF. In our maps, there some significant quadrant effects.
 
-	\paragraph{ESO 443-G024}
+	\paragraph{NGC 7075} appears to have NF, though with quite slow velocities.
+
+	\paragraph{PKS 0718-34} is a KDC, though not as clear as IC 1459. It has very little gas detected particularly OIII, though the often faint $H_\delta$ line is detected. 
+
+	\paragraph{ESO 443-G024} is a NR. It has strong concentrated oxygen (OIII) and nitrogen (NI) at the center of the galaxy, though the hydrogen ($H_\beta$ and $H_\gamma$) is more evenly concentrated throughout the galaxy.
+
+
+	\begin{figure}
+		\centering
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{ic1459_vel}
+			\caption{IC 1459}
+			\label{subfig:ic1459}
+		\end{subfigure}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{ic1531_vel}
+			\caption{IC 1531}
+			\label{subfig:ic1531}
+		\end{subfigure}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{ic4296_vel}
+			\caption{IC 4296}
+			\label{subfig:ic4296}
+		\end{subfigure}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{ngc0612_vel}
+			\caption{NGC 0612}
+			\label{subfig:ngc0612}
+		\end{subfigure}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{ngc1399_vel}
+			\caption{NGC 1399}
+			\label{subfig:ngc1399}
+		\end{subfigure}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{ngc3100_vel}
+			\caption{NGC 3100}
+			\label{subfig:ngc3100}
+		\end{subfigure}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{ngc3557_vel}
+			\caption{NGC 3557}
+			\label{subfig:ngc3557}
+		\end{subfigure}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{ngc7075_vel}
+			\caption{NGC 7075}
+			\label{subfig:ngc7075}
+		\end{subfigure}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{pks0718-34_vel}
+			\caption{PKS 0718-34}
+			\label{subfig:pks0718-34}
+		\end{subfigure}
+		\begin{subfigure}{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{eso443-g024_vel}
+			\caption{ESO 443-G024}
+			\label{subfig:eso443-g024}
+		\end{subfigure}
+		\caption{Stellar velocity maps for our sample}
+		\label{fig:velmaps}
+	\end{figure}
+
 
 \section{Discussion}
 	\label{sec:discuss}
@@ -93,8 +180,8 @@
 	\label{sec:conc}
 
 
-
-\bibliographystyle{aip}
+\floatbarrier
+\bibliographystyle{mnras}
 
 \bibliography{bib}{}
 
