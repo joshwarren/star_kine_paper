@@ -24,8 +24,8 @@
 
 \begin{document}
 
-\title{Low-powered Radio Galaxies: Stellar Kinematics}
-\author{Joshua Warren, Martin Bureau, Bernd Hasemann, Isabella Prandoni, Francesco Santoro, Robert Laing, Paola Parma, Hans de Ruiter and Arturo Mignano}
+\title{Low-powered Radio Galaxies: Spatially Resolved Kinematics}
+\author{Joshua Warren, Martin Bureau, Bernd Hasemann, Isabella Prandoni, Francesco Santoro,\\ Robert Laing, Paola Parma, Hans de Ruiter and Arturo Mignano}
 \date{Oxford, \today}
 
 %\begin{abstract}bib
@@ -37,44 +37,52 @@
 
 \section{Introduction}
 	\label{sec:intro}
-	There are known to be strong scaling relations between the mass of the central supermassive black-hole (SMBH) and the global properties in a given galaxy. These are generally understood to be connected by feedback processes, where large amounts of gas within the galaxy cools, falls on the SMBH. Here the black-hole imparts energy to the gas, causing outflows (or jets) and/or thermal emission. We observe this as an Active Galactic Nuclei (AGN) which can have distinctive emission across the electromagnetic spectrum. The exact mechanisms are still remains and open question, with much theoretical and observational work ongoing. The AGN can then effect the outer parts of the galaxy, by methods just as fountain effects, thermal heating and shock created by the outflows.
+	There are known to be strong scaling relations between the mass of the central supermassive black-hole (SMBH) and the global properties in a given galaxy. These are generally understood to be connected by feedback processes, where large amounts of gas within the galaxy cools, falls on the SMBH. Here the black-hole imparts energy to the gas, causing outflows (or jets) and/or thermal emission. We observe this as an Active Galactic Nuclei (AGN) which can have distinctive emission across the electromagnetic spectrum. The exact mechanisms still remains an open question, with much theoretical and observational work ongoing. The AGN can then effect the outer parts of the galaxy, by methods just as fountain effects, thermal heating and shock created by the outflows.
 
-	In this paper we consider radio galaxies (RGs) i.e. galaxies detected with an associated radio source, in particular FR I/FR II type. While star formation can give a radio continuum, it is accepted that centrally consentrated radio emission as in FR I galaxies must be accossiated to synchrotron emission in a jet from the AGN. Hereafter the term RG will refer to AGN type RGs rather than star forming.	While there is broad consensus the brightest RGs are caused when a massive galaxy merges with a gas rich galaxy (a wet merger) giving a plentiful fuel reservoir to the AGN \cite{Baum1992}, there is much more debate when it comes to dimmer RGs. Suggestions fall into two categories: external origin of the gas source e.g. a smaller wet merger or accretion from the hot X-ray component of Inter-Galactic Medium (IGM) via Bondi accretion \cite{Allen2006}; or internal sources such as stellar winds within the galaxy or simply from existing cold gas reservoirs \cite{Prandoni2010}. This project aims to add to this discussion using Integral Field Unit (IFU) observations in the visible band of nearby radio galaxies and comparing this with Atlas-3D sample \cite{Cappellari2011} as a control sample.
+	In this paper we consider radio galaxies (RGs) i.e. galaxies detected with an associated radio source, in particular FR I/FR II type. While star formation can give a radio continuum, it is accepted that centrally concentrated radio emission as in FR I galaxies must be associated to synchrotron emission in a jet from the AGN. Hereafter the term RG will refer to AGN type RGs rather than star forming.	
+
+	While there is broad consensus \citep{Heckman1986, Baum1992} that the brightest RGs are caused when a massive galaxy merges with a gas rich galaxy (a wet merger) giving a plentiful fuel reservoir to the AGN \citep{Baum1992}, there is much more debate when it comes to low-powered RGs ($P_\mathrt{1.4 GHz} \lesssim 10^{24.5} \, \mathrm{W Hz^{-1}}$). Suggestions fall into two categories: an extrapolation of radio-loud galaxies (i.e. a merger with either small gas reservoirs or low efficiency accretion onto the SMBH) or a highly efficient accretion of gas from secular origins (such as Bondi accretion of the hot X-ray component of the Inter-Stellar Medium (ISM) \citep{Allen2006} or from existing cold gas reservoirs \citep{Prandoni2010}). This project aims to add to this discussion using Integral Field Unit (IFU) observations in the visible band of nearby radio galaxies and comparing this with Atlas-3D sample \citep{Cappellari2011} as a control sample.
 
 % More to add to intro - e.g. summery of paper 
 
 \section{Sample Description}
 	\label{sec:samp}
-	The sample was first set out in \citet{Prandoni2010}. The Parkes 2.7 GHz survey was used as the parent sample to identify radio galaxies. This imposed a declination range of $-14\deg < \delta < -40\deg$ and a flux density limit of 0.25 Jy in the 2.7 GHz band. The additional criteria was an associated early type galaxy (ETG) host which is at $z<0.03$. This left 11 sources, which hereafter will be refered to as the Southern Sample. All display an FRI morphology with low to intermediate radio power.
+	The sample was first set out in \citet{Prandoni2010}. The Parkes 2.7 GHz survey was used as the parent sample to identify radio galaxies. This imposed a declination range of $-14\deg < \delta < -40\deg$ and a flux density limit of 0.25 Jy in the 2.7 GHz band. The additional criteria was an associated early type galaxy (ETG) host which is at $z<0.03$. This left 11 sources, which hereafter will be referred to as the Southern Sample. All display an FRI morphology with low to intermediate radio power.
 
-	Of this sample, 10 were observed with the APEX single dish telescope for CO, with the remaining host (NGC 1316) already obsevered in \citet{Horellou2001}. All were detected and are given in \citet{Prandoni2010}. These detections have since been followed up with ALMA images (not yet released). 
+	Of this sample, 10 were observed with the APEX single dish telescope for CO, with the remaining host (NGC 1316) already observed in \citet{Horellou2001}. All were detected and are given in \citet{Prandoni2010}. These detections have since been followed up with ALMA (not yet released). 
 
 
-\section{Observing stratagy and Data Reduction}
+\section{Observing strategy and Data Reduction}
 	\label{sec:obs}
 	\subsection{The VIsable Multi-Object Spectrograph (VIMOS)}
 		\label{subsec:VIMOS}
-		The sample was observed with the VIsable Multi-Object Spectrograph (VIMOS), mounted on UT3 on the VLT in Paranal, using the new (at the time) HR Blue grism. All observations were taken with a spacial resolution of 0.67". Each object was imaged with a total integration time of 102 mins equally spread over three observing blocks. Each block contained all of the necessary calibration images (3 flat fields and 1 He and Ne arc lamp image for wavelength calibration), as well as two science pointings. In addition, VIMOS provides 5 bias images per night. 
+		The sample was observed with the VIsable Multi-Object Spectrograph (VIMOS), mounted on UT3 on the VLT in Paranal \citep{LeFevre2003}, using the new (at the time) HR Blue grism. All observations were taken with a spacial resolution of 0.67". Each object was imaged with a total integration time of $\sim 100$ mins equally spread over three observing blocks. Each block contained all of the necessary calibration images (3 flat fields and 1 He and Ne arc lamp image for wavelength calibration), as well as two science pointings. In addition, VIMOS provides 5 bias images per night. Flux calibrations was done using public Standards provided by ESO of Feige 110.
 
 		VIMOS has several well known, though not well understood technical issues. These include several low transmission (bad) fibers, strong flexure and large differences in sensitivity across its 4 separate detectors, known as quadrants. These are addressed by a specialist data reduction pipeline as described in Section \ref{subsec:reduct}. 
 
 	\subsection{Data Reduction}
 		\label{subsec:reduct}
-		The data reduction pipeline was produced using Py3D, a suite of programs based on those developed for Califa DR1 (\citep{Sanchez2011}, \citep{Husemann2013}) and later updated for VIMOS \citep{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as bad fibres and strong flexure. A brief outline is the additional steps to accounts for these is given below, while detailed desciptions can be found in \citet{Sanchez2011} for the standard reduction steps and \citep{Husemann2014} for the VIMOS specific modifications. 
+		The data reduction pipeline was produced using Py3D, a suite of programs based on those developed for Califa DR1 \citep{Sanchez2011, Husemann2013} and later updated for VIMOS \citep{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as bad fibers and strong flexure. A brief outline is the additional steps to accounts for these is given below, while detailed descriptions can be found in \citet{Sanchez2011} for the standard reduction steps and \citep{Husemann2014} for the VIMOS specific modifications. 
 		\begin{itemize}
-		\item The known bad pixels and flexure offsets are included when completing the wavelength calibration. In testing, this was found to be robust except for the blue end of the spectrum ($\lambda < 4300 \AA$) when using the blue HR gisam \citep{Husemann2014}. Indeed, we found that the spectrum below 4200\AA was strongly supressed and was therefore discarded.
-		\item Flexure also gives an offset to flat-fielding and while this known to be only upto $\pm0.5$pixels, this is also taken into account.
-		\item The dense packing of the fibres onto the CCD means that cross-talk is occurs and is extracted using \citep{Horne1986}. 
+		\item The known bad pixels and flexure offsets are included when completing the wavelength calibration. In testing, this was found to be robust except for the blue end of the spectrum ($\lambda < 4300 \AA$) when using the blue HR grism \citep{Husemann2014}. Indeed, we found that the spectrum below 4200\AA was strongly suppressed and was therefore discarded.
+		\item Flexure also gives an offset to flat-fielding and while this known to be only up to $\pm0.5$pixels, this is also taken into account.
+		\item The dense packing of the fibers onto the CCD means that cross-talk is occurs and is extracted using \citep{Horne1986}. 
 		\end{itemize}
 		All of the above steps are detailed in Section 2.3 in \citet{Husemann2014}.
 
-		After inspecting the reduced data cubes, it was noted that most of the outer fibres had no (or very low) transmission. Given the observations were all centally located on the field of view, the outer 2 rows of fibres on each edge were able to be discarded to leave a final cube of the central 36 x 36 fibres or a field of view of 24.1 x 24.1 arcsecs. The image was then binned using Voronoi Binning technique \citep{Cappellari2003}. As stated above, a low readout at the edges of the spectrum meant that the wavelength range was cut to $\sim 4200 - 5300 \AA$. This was computed algorthmically as the point at which the spectrum fell by 20\% across 4 pixels. This was deemed to be a sharp enough cut off that it would be unlikely to arrise in the emitted spectrum. Below about the calcium line, Ca4227, the obseved spectrum tended to become unresponsive and so a hard cut lower cut was applied at 4200 \AA. When calculatig total flux or any parameter dependant on total flux, only the wavelength range common to all bins was used, otherwise this was computered indervidually for each bin in order to preseve as much as infomation as possible.
+		%After inspecting the reduced data cubes, it was noted that most of the outer fibres had no (or very low) transmission. Given the observations were all centally located on the field of view, the outer 2 rows of fibres on each edge were able to be discarded to leave a final cube of the central 36 x 36 fibres or a field of view of 24.1 x 24.1 arcsecs. 
 
-		Following this the cubes were analised using the pPXF package \citep{Cappellari2004} to find a best fit spectrum by stacking the Miles empirical stellar spectrums \citep{Sanchez-Blazquez2006} convolved with a line-of-sight velocity distribusion (LOSVD) given by a gaussian-like distribution, allowed to vary up to the 4th Gauss-Hermite moment (i.e. the LOSVD could be characterised by 4 parameters: recessional velocity, $v$; velocity dispersion, $\sigma$ and the 3rd and 4th Gauss-Hermite momenents, $h_3$ and $h_4$). This fit was done within a Monty Carlo (MC) method to allow accurate estimation of the uncertainties in these values. Emission lines were simultansously fitted with the same method, but using a gaussian spectrum for the template, and as such will not effect the results here. The kinematics of the gas systems will be presented in a future paper \citep{warren2017}. % is this normal? 
+		Following on from this, it was noted that the cubes where still not fully corrected. A fringe-like pattern was still observable in the spectral direction and quadrants were not calibrated to each other. These were improved by implementing a python version of the corrections given in \citet{Lagerhom2012}. 
+
+		% Need to show some examples. 
+
+		The cube was then spatially binned using Voronoi Binning technique \citep{Cappellari2003} to a Signal to Noise ratio (S/N), defined to be the ratio of the medians of the spatially integrated cube and the spatially integrated noise spectrum, of 30. Below about the calcium doublet, Ca4227, the observed spectrum tended to become unresponsive and so a hard cut lower cut was applied at 4200 \AA. When calculating total flux or any parameter dependent on total flux, only the wavelength range common to all bins was used (the quadrants have slightly different wavelength ranges), otherwise this was computed individually for each bin in order to preserve as much as information as possible.
+
+		Following this the cubes were analyzed using the pPXF package \citep{Cappellari2004} to find a best fit spectrum by stacking the Miles empirical stellar spectra \citep{Sanchez-Blazquez2006} convolved with a line-of-sight velocity distribution (LOSVD) given by a Gaussian-like distribution, allowed to vary up to the 4th Gauss-Hermite moment (i.e. the LOSVD could be characterized by 4 parameters: recessional velocity, $v$; velocity dispersion, $\sigma$ and the 3rd and 4th Gauss-Hermite moments, $h_3$ and $h_4$). This fit was done within a simple Monty Carlo (MC) method to allow accurate estimation of the uncertainties in these values. Emission lines were simultaneously fitted with the same method, using a Gaussian spectrum for the template. A fourth order multiplicative Legendre polynomial was allowed as a free parameter to correct for the continuum shape. 
 
 \section{Kinematics}
 	\label{sec:kine}
-	The kinematics of the sample are classified according to the Regular-Rotator/Non Regular-Rotator (RR/NRR) regime given in \citet{Krajnovic2011}, Fast/Slow Rotator (FR/SR) regime given in \citet{Cappellari2016} (origionally defined by \citet{Emsellem2011}, but later refined by \citet{Cappellari2016}). Beyond this attempts have been made to use the kinematic features as defined in \citet{Krajnovic2011}, however the quality of the data has meant that many have had to be classified by eye as the artifacts from the VIMOS quadrents confuse any ellipse fitting methods. 
+	The kinematics of the sample are classified according to the Regular-Rotator/Non Regular-Rotator (RR/NRR) regime given in \citet{Krajnovic2011}, Fast/Slow Rotator (FR/SR) regime given in \citet{Cappellari2016} (originally defined by \citet{Emsellem2011}, but later refined by \citet{Cappellari2016}). Beyond this attempts have been made to use the kinematic features as defined in \citet{Krajnovic2011}, however the quality of the data has meant that many have had to be classified by eye as the artifacts from the VIMOS quadrants confuse any ellipse fitting methods. 
 
 	The following briefly describe the observations and results of each of the sample. It is also worth noting that many maps have been clipped in the color axis, to allow the more detailed structures to not be overwhelmed by the extremes. 
 
@@ -176,7 +184,7 @@
 \section{Discussion}
 	\label{sec:discuss}
 
-\section{Conclution}
+\section{Conclusion}
 	\label{sec:conc}
 
 
