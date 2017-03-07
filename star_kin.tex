@@ -1,5 +1,5 @@
 %\documentclass[a4paper,11pt]{article}
-\documentclass[a4paper,fleqn,usenatbib,useAMS]{mnras}
+\documentclass[fleqn,usenatbib,useAMS]{mnras}
 %\usepackage{amsmath}
 \usepackage{graphicx} % For figures
 \usepackage{subcaption} % for multiple plots in one figures - allows caption and referencing plots and figures
@@ -8,12 +8,13 @@
 %\usepackage{verbatim}
 %\usepackage{float} % Not installed
 %\usepackage{multirow} % Not installed
-\usepackage[section]{placeins} % Not installed - think is for floatbarrier command
+%\usepackage[section]{placeins} % Not installed - think is for floatbarrier command
 %\usepackage{cite}
 %\usepackage{natbib}
 %\usepackage{newtxtext,newtxmath} % Times font as in MNRAS
 \usepackage{mathptmx}
 \usepackage{txfonts}
+
 
 %\numberwithin{equation}{section}
 
@@ -22,17 +23,33 @@
 %\allowdisplaybreaks
 %\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
-\begin{document}
+
 
 \title{Low-powered Radio Galaxies: Spatially Resolved Kinematics}
-\author{Joshua Warren, Martin Bureau, Bernd Hasemann, Isabella Prandoni, Francesco Santoro,\\ Robert Laing, Paola Parma, Hans de Ruiter and Arturo Mignano}
-\date{Oxford, \today}
+\author[J. Warren et al.]{
+Joshua Warren,$^{1}$\thanks{Contact e-mail: \href{mailto:joshua.warren@physics.ox.ac.uk}{joshua.warren@physics.ox.ac.uk}}
+Martin Bureau,$^{1}$
+Bernd Hasemann,$^{2}$
+Isabella Prandoni,$^{3}$ \newauthor
+Francesco Santoro,$^{3}$
+Robert Laing,$^{3}$
+Paola Parma,$^{3}$
+Hans de Ruiter$^{3}$
+and Arturo Mignano$^{3}$
+\\
+$^{1}$Sub-department of Astrophysics, Department of Physics, University of Oxford, Denys Wilkinson Building, Keble Road, Oxford OX1 3RH, UK\\
+$^{2}$European Southern Observatory, Karl-Schwarzschild-Str. 2, 85748 Garching b. München, Germany\\
+$^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Italy}
 
-%\begin{abstract}bib
-%lkl
-%\end{abstract}
-
+\begin{document}
 \maketitle
+
+%\date{Oxford, \today} % date is given automatically at top of page in mnras formatting
+
+\begin{abstract}
+
+\end{abstract}
+
 
 
 \section{Introduction}
@@ -41,7 +58,7 @@
 
 	This is generally understood to be a feedback process, where large amounts of gas within the galaxy cools, falls on the SMBH. Here the black-hole imparts energy to the gas, causing outflows (or jets) and/or thermal emission. We observe this as an Active Galactic Nuclei (AGN) which can have distinctive emission across the electromagnetic spectrum. The exact mechanisms of imparting energy still remains an open question, with much theoretical and observational work ongoing. The outflows can then effect the outer parts of the galaxy, by methods such as fountain effects \citep{}, thermal heating \citep{DeYoung2010} and shocks created by the outflows \citep{}.
 
-	One method identifier of AGNs is a radio signature consistant with Snchrotron emission from the outflow i.e a radio galaxy (RG). These are typically chatagorised into one of two classes: Fanaroff-Riley (FR) I or FR II \citep{Fanaroff1974}. Of these we focus on the former since these are by far the most common mode in the local universe (possibly as far as $z \sim 1$ \citep{Rigby2008}), and so to discuss radio AGN feedback is to consider feedback from FR I sources \citep{DeYoung2010}. Indeed, while there is broad consensus \citep{Heckman1986, Baum1992} that the brightest RGs (mostly FR IIs) are caused when a massive galaxy merges with a gas rich galaxy (a wet merger) giving a plentiful fuel reservoir to the AGN \citep{Baum1992}, there is much more debate when it comes to low-powered ($P_\mathrt{1.4 GHz} \lesssim 10^{24.5} \, \mathrm{W Hz^{-1}}$) RGs (mostly FR I). Suggestions fall into two categories: an extrapolation of radio-loud galaxies (i.e. a merger with either small gas reservoirs or low efficiency accretion onto the SMBH) or a highly efficient accretion of gas from secular origins (such as Bondi accretion of the hot X-ray component of the Inter-Stellar Medium (ISM) \citep{Allen2006} or from existing cold gas reservoirs \citep{Prandoni2010}). This project aims to add to this discussion using Integral Field Unit (IFU) observations in the visible band of nearby radio galaxies and comparing this with Atlas-3D sample \citep{Cappellari2011} as a control sample.
+	One identifier of AGNs is a radio signature consistent with Synchrotron emission from the outflow i.e a radio galaxy (RG). These are typically categorized into one of two classes: Fanaroff-Riley (FR) I or FR II \citep{Fanaroff1974}. Of these we focus on the former since these are by far the most common mode in the local universe (possibly as far as $z \sim 1$ \citep{Rigby2008}), and so to discuss radio AGN feedback is to consider feedback from FR I sources \citep{DeYoung2010}. Indeed, while there is broad consensus \citep{Heckman1986, Baum1992} that the brightest RGs (mostly FR IIs) are caused when a massive galaxy merges with a gas rich galaxy (a wet merger) giving a plentiful fuel reservoir to the AGN \citep{Baum1992}, there is much more debate when it comes to low-powered ($P_\mathrm{1.4 GHz} \lesssim 10^{24.5} \, \mathrm{W Hz^{-1}}$) RGs (mostly FR I). Suggestions fall into two categories: an extrapolation of radio-loud galaxies (i.e. a merger with either small gas reservoirs or low efficiency accretion onto the SMBH) or a highly efficient accretion of gas from secular origins (such as Bondi accretion of the hot X-ray component of the Inter-Stellar Medium (ISM) \citep{Allen2006} or from existing cold gas reservoirs \citep{Prandoni2010}). This project aims to add to this discussion using Integral Field Unit (IFU) observations in the visible band of nearby radio galaxies and comparing this with Atlas-3D sample \citep{Cappellari2011} as a control sample.
 
 % More to add to intro - e.g. summery of paper 
 
@@ -49,7 +66,7 @@
 	\label{sec:samp}
 	The sample was first set out in \citet{Prandoni2010}. The Parkes 2.7 GHz survey was used as the parent sample to identify radio galaxies. This imposed a declination range of $-14\deg < \delta < -40\deg$ and a flux density limit of 0.25 Jy in the 2.7 GHz band. The additional criteria was an associated early type galaxy (ETG) host which is at $z<0.03$. This left 11 sources, which hereafter will be referred to as the Southern Sample. All display an FRI morphology with low to intermediate radio power.
 
-	Of this sample, 10 were observed with the APEX single dish telescope for CO, with the remaining host (NGC 1316) already observed in \citet{Horellou2001}. All were detected and are given in \citet{Prandoni2010}. These detections have since been followed up with ALMA (not yet released). 
+	Of this sample, 10 were observed with the APEX single dish telescope for CO, with the remaining host (NGC 1316) already observed in \citet{Horellou2001}. All were detected and results are given in \citet{Prandoni2010}. These detections have since been followed up with ALMA (not yet released). 
 
 
 \section{Observing strategy and Data Reduction}
@@ -114,71 +131,7 @@
 	\paragraph{ESO 443-G024} is a NR. It has strong concentrated oxygen (OIII) and nitrogen (NI) at the center of the galaxy, though the hydrogen ($H_\beta$ and $H_\gamma$) is more evenly concentrated throughout the galaxy.
 
 
-	\begin{figure}
-		\centering
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{ic1459_vel}
-			\caption{IC 1459}
-			\label{subfig:ic1459}
-		\end{subfigure}
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{ic1531_vel}
-			\caption{IC 1531}
-			\label{subfig:ic1531}
-		\end{subfigure}
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{ic4296_vel}
-			\caption{IC 4296}
-			\label{subfig:ic4296}
-		\end{subfigure}
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{ngc0612_vel}
-			\caption{NGC 0612}
-			\label{subfig:ngc0612}
-		\end{subfigure}
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{ngc1399_vel}
-			\caption{NGC 1399}
-			\label{subfig:ngc1399}
-		\end{subfigure}
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{ngc3100_vel}
-			\caption{NGC 3100}
-			\label{subfig:ngc3100}
-		\end{subfigure}
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{ngc3557_vel}
-			\caption{NGC 3557}
-			\label{subfig:ngc3557}
-		\end{subfigure}
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{ngc7075_vel}
-			\caption{NGC 7075}
-			\label{subfig:ngc7075}
-		\end{subfigure}
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{pks0718-34_vel}
-			\caption{PKS 0718-34}
-			\label{subfig:pks0718-34}
-		\end{subfigure}
-		\begin{subfigure}{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{eso443-g024_vel}
-			\caption{ESO 443-G024}
-			\label{subfig:eso443-g024}
-		\end{subfigure}
-		\caption{Stellar velocity maps for our sample}
-		\label{fig:velmaps}
-	\end{figure}
+	
 
 
 \section{Discussion}
@@ -188,9 +141,20 @@
 	\label{sec:conc}
 
 
-\floatbarrier
-\bibliographystyle{mnras}
+%\FloatBarrier
+%\bibliographystyle{mnras}
 
 \bibliography{bib}{}
+
+\appendix
+
+\section{Kinematic Maps}
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.19\textwidth]{plots/ngc1399_img.png}
+	\caption{IC 1459}
+	\label{subfig:ic1459}
+\end{figure}
+
 
 \end{document}
