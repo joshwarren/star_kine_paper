@@ -2,13 +2,13 @@
 \documentclass[fleqn,usenatbib,useAMS]{mnras}
 %\usepackage{amsmath}
 \usepackage{graphicx} % For figures
-\usepackage{subcaption} % for multiple plots in one figures - allows caption and referencing plots and figures
+%\usepackage{subcaption} % for multiple plots in one figures - allows caption and referencing plots and figures
 
 %\usepackage{amssymb}
 %\usepackage{verbatim}
 %\usepackage{float} % Not installed
 %\usepackage{multirow} % Not installed
-%\usepackage[section]{placeins} % Not installed - think is for floatbarrier command
+\usepackage[section]{placeins} % Not installed - think is for floatbarrier command
 %\usepackage{cite}
 %\usepackage{natbib}
 %\usepackage{newtxtext,newtxmath} % Times font as in MNRAS
@@ -103,20 +103,13 @@ $^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Ita
 
 	The following briefly describe the observations and results of each of the sample. It is also worth noting that many maps have been clipped in the color axis, to allow the more detailed structures to not be overwhelmed by the extremes. 
 
-	\paragraph{IC 1459} is a known to contain a KDC. This is clearly seen in our velocity map (Fig. \ref{subfig:ic1459}).
+	\paragraph{IC 1459} is a known to contain a KDC. This is clearly seen in our velocity map (Fig. \ref{fig:stellar_vel}).
 
 	\paragraph{IC 1531} seems to contain either a KDC (though not a particularly clear one) or a KT, though both of these observations may be due to quadrant effects. We define it as unclassifiable. This galaxy has a very sparse detection of oxygen (OIII) which appears concentrated in the center.
 
 	\paragraph{IC 4296} appears to have KT, though this may be a quadrant feature. It has strong OIII and NI detects, which are strongly peaked at the center of the galaxy, while the hydrogen is more dispersed. There is potentially 2 peaks in all of the gas intensity maps, which is not seen in the image (total flux/collapsed cube).
 
-	\paragraph{NGC 0612} has a large dust lane to the west of the apparent center of the galaxy. This is seen as a lower velocity dispersion (Fig \ref{fig:ngc0612_sig}). Dust lanes generally imply a disky galaxy and indeed this is seem here as map shows has NF. 
-
-	\begin{figure}[!ht]
-		\centering
-		\includegraphics[width=0.5\textwidth]{ngc0612_sig.png}
-		\caption{Velocity Dispersion map for NGC 0612. The dust lane shows up as a vertical feature with a reduced Velocity Dispersion, just to the right of center.}
-		\label{fig:ngc0612_sig}
-	\end{figure}
+	\paragraph{NGC 0612} has a large dust lane to the west of the apparent center of the galaxy. This is seen as a lower velocity dispersion (Fig \ref{fig:stellar_sigma}). Dust lanes generally imply a disky galaxy and indeed this is seem here as map shows has NF. 
 
 	\paragraph{NGC 1399} is known to have kinematic twist (see MUSE map in \citet{Zieleniewski2017}), however this is not visible in our map. This is partly due to the twist being on a scale of about the VIMOS field of view and partly due to the quadrant features in our maps. We have used this classification none the less. 
 
@@ -149,12 +142,444 @@ $^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Ita
 \appendix
 
 \section{Kinematic Maps}
-\begin{figure*}
-	\centering
-	\includegraphics[width=0.19\textwidth]{plots/ngc1399_img.png}
-	\caption{IC 1459}
-	\label{subfig:ic1459}
-\end{figure}
+	\label{sec:kinmaps}
+	\subsection{Stellar maps}
+		\label{subsec:stellarmaps}
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_img.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_img.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_img.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_img.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_img.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_img.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_img.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_img.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_img.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_img.png}
+			\caption{Image of each galaxy from collapsing the IFU cube in the spectral direction}
+			\label{fig:image}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_stellar_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_stellar_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_stellar_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_stellar_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_stellar_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_stellar_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_stellar_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_stellar_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_stellar_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_stellar_vel.png}
+			\caption{Stellar velocity map for each galaxy in the sample.}
+			\label{fig:stellar_vel}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_stellar_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_stellar_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_stellar_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_stellar_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_stellar_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_stellar_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_stellar_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_stellar_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_stellar_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_stellar_sigma.png}
+			\caption{Stellar velocity dispersion ($\mathrm{\sigma}$) map for each galaxy in the sample.}
+			\label{fig:stellar_sigma}
+		\end{figure*}
+
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_stellar_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_stellar_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_stellar_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_stellar_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_stellar_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_stellar_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_stellar_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_stellar_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_stellar_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_stellar_h3.png}
+			\caption{Third Gauss-Hermite moment (h3) map for the stellar component of each galaxy in the sample.}
+			\label{fig:stellar_h3}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_stellar_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_stellar_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_stellar_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_stellar_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_stellar_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_stellar_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_stellar_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_stellar_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_stellar_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_stellar_h4.png}
+			\caption{Fourth Gauss-Hermite moment (h4) map for for the stellar component of each galaxy in the sample.}
+			\label{fig:stellar_h4}
+		\end{figure*}
+
+
+
+	\subsection{[OIII] maps}
+		\label{subsec:OIIImaps}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[OIII]5007d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[OIII]5007d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[OIII]5007d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[OIII]5007d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[OIII]5007d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[OIII]5007d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[OIII]5007d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[OIII]5007d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[OIII]5007d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[OIII]5007d_eqW.png}
+			\caption{Equivalent width of [OIII] of each galaxy}
+			\label{fig:OIII_eqw}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[OIII]5007d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[OIII]5007d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[OIII]5007d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[OIII]5007d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[OIII]5007d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[OIII]5007d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[OIII]5007d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[OIII]5007d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[OIII]5007d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[OIII]5007d_vel.png}
+			\caption{[OIII] velocity map for each galaxy in the sample.}
+			\label{fig:OIII_vel}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[OIII]5007d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[OIII]5007d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[OIII]5007d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[OIII]5007d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[OIII]5007d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[OIII]5007d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[OIII]5007d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[OIII]5007d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[OIII]5007d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[OIII]5007d_sigma.png}
+			\caption{[OIII] velocity dispersion ($\mathrm{\sigma}$) map for each galaxy in the sample.}
+			\label{fig:OIII_sigma}
+		\end{figure*}
+
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[OIII]5007d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[OIII]5007d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[OIII]5007d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[OIII]5007d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[OIII]5007d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[OIII]5007d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[OIII]5007d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[OIII]5007d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[OIII]5007d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[OIII]5007d_h3.png}
+			\caption{Third Gauss-Hermite moment (h3) map for the [OIII] component of each galaxy in the sample.}
+			\label{fig:OIII_h3}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[OIII]5007d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[OIII]5007d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[OIII]5007d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[OIII]5007d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[OIII]5007d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[OIII]5007d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[OIII]5007d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[OIII]5007d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[OIII]5007d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[OIII]5007d_h4.png}
+			\caption{Fourth Gauss-Hermite moment (h4) map for for the [OIII] component of each galaxy in the sample.}
+			\label{fig:OIII_h4}
+		\end{figure*}
+
+
+
+
+
+
+
+
+
+
+	\subsection{H$_\mathrm{\beta}$ maps}
+		\label{subsec:Hbetamaps}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hbeta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hbeta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hbeta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hbeta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hbeta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hbeta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hbeta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hbeta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hbeta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hbeta_eqW.png}
+			\caption{Equivalent width of H$_\mathrm{\beta}$ of each galaxy}
+			\label{fig:Hbeta_eqw}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hbeta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hbeta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hbeta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hbeta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hbeta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hbeta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hbeta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hbeta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hbeta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hbeta_vel.png}
+			\caption{H$_\mathrm{\beta}$ velocity map for each galaxy in the sample.}
+			\label{fig:Hbeta_vel}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hbeta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hbeta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hbeta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hbeta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hbeta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hbeta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hbeta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hbeta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hbeta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hbeta_sigma.png}
+			\caption{H$_\mathrm{\beta}$ velocity dispersion ($\mathrm{\sigma}$) map for each galaxy in the sample.}
+			\label{fig:Hbeta_sigma}
+		\end{figure*}
+
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hbeta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hbeta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hbeta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hbeta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hbeta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hbeta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hbeta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hbeta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hbeta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hbeta_h3.png}
+			\caption{Third Gauss-Hermite moment (h3) map for the H$_\mathrm{\beta}$ component of each galaxy in the sample.}
+			\label{fig:Hbeta_h3}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hbeta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hbeta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hbeta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hbeta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hbeta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hbeta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hbeta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hbeta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hbeta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hbeta_h4.png}
+			\caption{Fourth Gauss-Hermite moment (h4) map for for the H$_\mathrm{\beta}$ component of each galaxy in the sample.}
+			\label{fig:Hbeta_h4}
+		\end{figure*}
+
+
+
+	\subsection{H$_\mathrm{\delta}$ maps}
+		\label{subsec:Hdeltamaps}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hdelta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hdelta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hdelta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hdelta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hdelta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hdelta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hdelta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hdelta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hdelta_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hdelta_eqW.png}
+			\caption{Equivalent width of H$_\mathrm{\delta}$ of each galaxy}
+			\label{fig:Hdelta_eqw}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hdelta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hdelta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hdelta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hdelta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hdelta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hdelta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hdelta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hdelta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hdelta_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hdelta_vel.png}
+			\caption{H$_\mathrm{\delta}$ velocity map for each galaxy in the sample.}
+			\label{fig:Hdelta_vel}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hdelta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hdelta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hdelta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hdelta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hdelta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hdelta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hdelta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hdelta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hdelta_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hdelta_sigma.png}
+			\caption{H$_\mathrm{\delta}$ velocity dispersion ($\mathrm{\sigma}$) map for each galaxy in the sample.}
+			\label{fig:Hdelta_sigma}
+		\end{figure*}
+
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hdelta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hdelta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hdelta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hdelta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hdelta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hdelta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hdelta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hdelta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hdelta_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hdelta_h3.png}
+			\caption{Third Gauss-Hermite moment (h3) map for the H$_\mathrm{\delta}$ component of each galaxy in the sample.}
+			\label{fig:Hdelta_h3}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_Hdelta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_Hdelta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_Hdelta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_Hdelta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_Hdelta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_Hdelta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_Hdelta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_Hdelta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_Hdelta_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_Hdelta_h4.png}
+			\caption{Fourth Gauss-Hermite moment (h4) map for for the H$_\mathrm{\delta}$ component of each galaxy in the sample.}
+			\label{fig:Hdelta_h4}
+		\end{figure*}
+
+
+
+
+
+	\subsection{[NI] maps}
+		\label{subsec:NImaps}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[NI]d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[NI]d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[NI]d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[NI]d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[NI]d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[NI]d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[NI]d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[NI]d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[NI]d_eqW.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[NI]d_eqW.png}
+			\caption{Equivalent width of [NI] of each galaxy}
+			\label{fig:NI_eqw}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[NI]d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[NI]d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[NI]d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[NI]d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[NI]d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[NI]d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[NI]d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[NI]d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[NI]d_vel.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[NI]d_vel.png}
+			\caption{[NI] velocity map for each galaxy in the sample.}
+			\label{fig:NI_vel}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[NI]d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[NI]d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[NI]d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[NI]d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[NI]d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[NI]d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[NI]d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[NI]d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[NI]d_sigma.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[NI]d_sigma.png}
+			\caption{[NI] velocity dispersion ($\mathrm{\sigma}$) map for each galaxy in the sample.}
+			\label{fig:NI_sigma}
+		\end{figure*}
+
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[NI]d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[NI]d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[NI]d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[NI]d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[NI]d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[NI]d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[NI]d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[NI]d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[NI]d_h3.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[NI]d_h3.png}
+			\caption{Third Gauss-Hermite moment (h3) map for the [NI] component of each galaxy in the sample.}
+			\label{fig:NI_h3}
+		\end{figure*}
+
+		\begin{figure*}
+			\centering
+			\includegraphics[width=0.245\textwidth]{plots/ic1459_[NI]d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic1531_[NI]d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ic4296_[NI]d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc0612_[NI]d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc1399_[NI]d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3100_[NI]d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc3557_[NI]d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/ngc7075_[NI]d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/pks0718-34_[NI]d_h4.png}
+			\includegraphics[width=0.245\textwidth]{plots/eso443-g024_[NI]d_h4.png}
+			\caption{Fourth Gauss-Hermite moment (h4) map for for the [NI] component of each galaxy in the sample.}
+			\label{fig:NI_h4}
+		\end{figure*}
+
+
 
 
 \end{document}
