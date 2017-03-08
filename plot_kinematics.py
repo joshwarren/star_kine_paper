@@ -237,7 +237,8 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 	ax = plot_velfield_nointerp(D.x, D.y, D.bin_num, D.xBar, D.yBar, D.flux, vmin=fmin, 
 		vmax=fmax, nodots=True, show_bin_num=show_bin_num, colorbar=True, 
 		label=CBLabel, cmap='gist_yarg', galaxy=galaxy.upper(), #header=header, 
-		signal_noise=D.SNRatio, signal_noise_target=SN_target, save=saveTo)
+		#signal_noise=D.SNRatio, signal_noise_target=SN_target, 
+		save=saveTo)
 	if CO:
 		add_CO(ax, galaxy, header)
 
@@ -511,7 +512,7 @@ if __name__ == '__main__':
 
 	galaxies = ['ngc3557', 'ic1459', 'ic1531', 'ic4296', 'ngc0612', 
 		'ngc1399', 'ngc3100', 'ngc7075', 'pks0718-34', 'eso443-g024']
-	galaxy = galaxies[5]
+	# galaxies = [galaxies[5]]
 
 	wav_range="4200-"
 	discard = 2 # rows of pixels to discard- must have been the same 
