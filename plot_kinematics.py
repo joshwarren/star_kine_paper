@@ -178,12 +178,12 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 	SN_target = 30
 	data_file =  "%s/galaxies.txt" % (vin_dir)
 	# different data types need to be read separetly
-	z_gals, x_gals, y_gals = np.loadtxt(data_file, unpack=True, skiprows=1, 
-		usecols=(1,4,5))
-	#x_gals, y_gals = x_gals.astype(int), y_gals.astype(int)
+	z_gals, SN_target_gals= np.loadtxt(data_file, unpack=True, skiprows=1, 
+		usecols=(1,6))
 	galaxy_gals = np.loadtxt(data_file, skiprows=1, usecols=(0,),dtype=str)
 	i_gal = np.where(galaxy_gals==galaxy)[0][0]
 	z = z_gals[i_gal]
+	SN_target=SN_target_gals[i_gal]
 
 
 	if wav_range:
@@ -230,7 +230,7 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 	title = "Total Flux"
 	CBLabel = r"Flux (erg s$^{-1}$ cm$^{-2}$)"
 
-	saveTo = "%s/%s_img.png" % (out_nointerp, galaxy)
+	saveTo = "%s/%s_stellar_img.png" % (out_nointerp, galaxy)
 	print saveTo
 	fmin, fmax = set_lims(D.flux, positive=True)
 
@@ -512,7 +512,7 @@ if __name__ == '__main__':
 
 	galaxies = ['ngc3557', 'ic1459', 'ic1531', 'ic4296', 'ngc0612', 
 		'ngc1399', 'ngc3100', 'ngc7075', 'pks0718-34', 'eso443-g024']
-	# galaxies = [galaxies[5]]
+	galaxies = [galaxies[6]]
 
 	wav_range="4200-"
 	discard = 2 # rows of pixels to discard- must have been the same 
