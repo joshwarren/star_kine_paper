@@ -302,26 +302,30 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 # ------------=========== Setting titles etc ============----------
 	print '    Kinematics'
 	# for c in ['stellar']: # For debugging
-	for c in D.list_components:
+	for c in D.independent_components:
 		print '        %s' % (c)
+		im_type = c
+		f = c
+		if im_type == "gas":
+			im_type=""
+			f = 'Hbeta'
+		elif im_type == "SF":
+			im_type=" (Star Forming)"
+			f = '[OIII]5007d'
+		elif im_type == "Shocks":
+			im_type=" (Shocking)"
+			f = 'Hbeta'
+		elif 'Hbeta' in im_type:
+			im_type=" ("+r'H$_\beta$'+")"
+		elif 'Hgamma' in im_type:
+			im_type=" ("+r'H$_\gamma$'+")"
+		elif 'OIII' in im_type:
+			im_type=" (OIII)"
+		else:
+			im_type=" (" + im_type + ")"
 
-		for k in D.components[c].plot.keys():
-			im_type = c
-			if im_type == "gas":
-				im_type=""
-			elif im_type == "SF":
-				im_type=" (Star Forming)"
-			elif im_type == "Shocks":
-				im_type=" (Shocking)"
-			elif 'Hbeta' in im_type:
-				im_type=" ("+r'H$_\beta$'+")"
-			elif 'Hgamma' in im_type:
-				im_type=" ("+r'H$_\gamma$'+")"
-			elif 'OIII' in im_type:
-				im_type=" (OIII)"
-			else:
-				im_type=" (" + im_type + ")"
 
+		for k in D.components[f].plot.keys():
 			symmetric=False
 			positive=False
 				
@@ -351,9 +355,9 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 				utitle = "Ionised" + im_type + " Gas Uncertainty " + title + " Map"
 				title = "Ionised" + im_type + " Gas\n" + title + " Map"
 # ------------============ Setting v range ==============----------
-			vmin, vmax = set_lims(D.components[c].plot[k], positive=positive, 
+			vmin, vmax = set_lims(D.components[f].plot[k], positive=positive, 
 				symmetric=symmetric)
-			v_uncert_min, v_uncert_max = set_lims(D.components[c].plot[k].uncert, 
+			v_uncert_min, v_uncert_max = set_lims(D.components[f].plot[k].uncert, 
 				positive=True)
 
 # ------------==== Plot velfield - no interperlation ====----------
@@ -361,7 +365,7 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 			saveTo = ("%s/%s_%s_%s.png" % (out_nointerp, galaxy, c, k))
 
 			ax = plot_velfield_nointerp(D.x, D.y, D.bin_num, D.xBar,
-				D.yBar, D.components[c].plot[k], vmin=vmin, vmax=vmax, #flux_type='notmag',
+				D.yBar, D.components[f].plot[k], vmin=vmin, vmax=vmax, #flux_type='notmag',
 				nodots=True, show_bin_num=show_bin_num, colorbar=True, 
 				label=CBLabel,galaxy = galaxy.upper(),
 				signal_noise=D.SNRatio, #header=header, 
@@ -510,9 +514,9 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 
 if __name__ == '__main__':
 
-	galaxies = ['ngc3557', 'ic1459', 'ic1531', 'ic4296', 'ngc0612', 
-		'ngc1399', 'ngc3100', 'ngc7075', 'pks0718-34', 'eso443-g024']
-	galaxies = [galaxies[6]]
+	galaxies = ['ic1459', 'ic1531', 'ic4296', 'ngc0612', 'ngc1399', 'ngc3100', 
+		'ngc3557', 'ngc7075', 'pks0718-34', 'eso443-g024']
+	# galaxies = [galaxies[8]]
 
 	wav_range="4200-"
 	discard = 2 # rows of pixels to discard- must have been the same 
