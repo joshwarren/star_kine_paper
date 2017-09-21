@@ -64,9 +64,9 @@ $^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Ita
 
 \section{Sample Description}
 	\label{sec:samp}
-	The sample was first set out in \citet{Prandoni2010}. The Parkes 2.7 GHz survey was used as the parent sample to identify radio galaxies. This imposed a declination range of $-14\deg < \delta < -40\deg$ and a flux density limit of 0.25 Jy in the 2.7 GHz band. The additional criteria was an associated early type galaxy (ETG) host which is at $z<0.03$. This left 11 sources, which hereafter will be referred to as the Southern Sample. All display an FRI morphology with low to intermediate radio power.
+	The sample was first set out in \citet{Prandoni2010}. The Parkes 2.7 GHz survey was used as the parent sample. This had the selection criteria of a declination range of $-14\deg < \delta < -40\deg$, flux density limit of $S_\mathrm{2.7 GHz} > 0.25 \mathrm{Jy}$ and an associated early type galaxy (ETG) host with a V-band magnitude of $m_V < 17 \mathrm{mag}$. From this parent sample, all source with the host at a redshift of $z<0.03$ were selected. This left 11 sources, which hereafter will be referred to as the Southern Sample. All display an FRI morphology with low to intermediate radio power.
 
-	Of this sample, 10 were observed with the APEX single dish telescope for CO, with the remaining host (NGC 1316) already observed in \citet{Horellou2001}. All were detected and results are given in \citet{Prandoni2010}. These detections have since been followed up with ALMA (not yet released). 
+	Of this sample, 10 were observed with the APEX single dish telescope for CO, with the remaining host (NGC 1316) already observed in \citet{Horellou2001}. All were detected and results are given in \citet{Prandoni2010}. These detections (except NGC1316 and NGC1399) have since been followed up with ALMA (not yet released). 
 
 
 \section{Observing strategy and Data Reduction}
@@ -77,7 +77,7 @@ $^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Ita
 
 		VIMOS has several well known, though not well understood technical issues. These include several low transmission (bad) fibers, strong flexure and large differences in sensitivity across its 4 separate detectors, known as quadrants. These are addressed by a specialist data reduction pipeline as described in Section \ref{subsec:reduct}. 
 
-	\subsection{Data Reduction}
+	\subsection{Data Reduction of VIMOS data}
 		\label{subsec:reduct}
 		The data reduction pipeline was produced using \textsc{Py3D}, a suite of programs based on those developed for Califa DR1 \citep{Sanchez2011, Husemann2013} and later updated for VIMOS by \citet{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as bad fibers and strong flexure. A brief outline is the additional steps to accounts for these is given below, while detailed descriptions can be found in \citet{Sanchez2011} for the standard reduction steps (bias subtraction, flat-fielding and wavelength and flux calibrations) and \citep{Husemann2014} for the VIMOS specific modifications. 
 		\begin{itemize}
@@ -89,19 +89,51 @@ $^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Ita
 
 		%After inspecting the reduced data cubes, it was noted that most of the outer fibres had no (or very low) transmission. Given the observations were all centally located on the field of view, the outer 2 rows of fibres on each edge were able to be discarded to leave a final cube of the central 36 x 36 fibres or a field of view of 24.1 x 24.1 arcsecs. 
 
-		Following on from this, it was noted that the cubes where still not fully corrected. A fringe-like pattern was still observable in the spectral direction and quadrants were not calibrated to each other. These were improved by implementing a \textsc{python} version of the ad-hoc corrections given in \citet{Lagerholm2012}. This involves re-normalizing the quadrants by minimizing the difference of the integrated spectra in neighboring fibers (Q2 was held constant) followed by the removal of a fringe-like pattern, by dividing out a smoothed median spectrum from the eight surrounding fibers of any given fiber, over a scale of 150 pixels. 
+		Following on from this, it was noted that the cubes where still not fully corrected. A fringe-like pattern was still observable in the spectral direction and quadrants were not calibrated to each other. These were improved by implementing a \textsc{python} version of the ad-hoc corrections given in \citet{Lagerholm2012}. This involves re-normalizing the quadrants by minimizing the difference of the integrated spectra in neighboring fibers (Q2 was held constant) followed by the removal of a fringe-like pattern, by dividing out a smoothed median spectrum from the eight surrounding fibers of any given fiber, over a scale of 150 pixels. These steps mean that the data-cubes will not be flux-calibrated, however the effect is multiplicative and thus will not effect equivalent width measurements.  
 
-		The variance spectra is propagated throughout the data reduction pipeline to be used a noise input in the analysis (\S \ref{subsec:analysis})
+		The variance spectra is propagated throughout the data reduction pipeline to be used a noise input in the analysis (\S \ref{sec:analysis})
+	
 
-		% Need to show some examples. 
-	\subsection{Data Analysis}
-		\label{subsec:analysis}
-		The cube was then spatially binned using Voronoi Binning technique \citep{Cappellari2003} to a Signal to Noise ratio (S/N), defined to be the ratio of the medians of the spatially integrated cube and the spatially integrated noise spectrum, of 30. Below about the calcium doublet, Ca4227, the observed spectrum tended to become unresponsive and so a hard cut lower cut was applied at 4200 \AA. When calculating total flux or any parameter dependent on total flux, only the wavelength range common to all bins was used (the quadrants have slightly different wavelength ranges), otherwise this was computed individually for each bin in order to preserve as much as information as possible.
+	\subsection{The Multi-Unit Spectroscoptic Explorer (MUSE)}
+		\label{subsec:MUSE}
+		Four of the sample (IC1459, IC1531, NGC1316 and NGC1399) where found to be in the archive for the Multi-Unit Spectroscoptic Explorer (MUSE). NGC1316 and NGC1399 where both observed as mosaics, while IC1459 and IC4296 where observed in single pointing. All were observed in the wide-field mode without adaptive optics. The phase 3 (pre-reduced) data products from ESO were used. 
 
-		Following this the cubes were analyzed using the \textsc{pPXF} package \citep{Cappellari2004} to find a best fit spectrum by stacking the Miles empirical stellar spectra \citep{Sanchez-Blazquez2006} convolved with a line-of-sight velocity distribution (LOSVD) given by a Gaussian-like distribution, allowed to vary up to the 4th Gauss-Hermite moment (i.e. the LOSVD could be characterized by 4 parameters: recessional velocity, $v$; line-of-sight velocity dispersion, $\sigma$ and the 3rd and 4th Gauss-Hermite moments, $h_3$ and $h_4$). The fit was done within a simple Monty Carlo (MC) method to allow accurate estimation of the uncertainties in these values, by adding noise to the spectra and investigating the effect on the LOSVD. The [OIII] doublet, H$_\mathrm{\beta}$, H$_\mathrm{\gamma}$, H$_\mathrm{\delta}$ and [NI] emission lines were also simultaneously fitted with the same method, using a Gaussian spectrum for the template, each with their own LOSVD free upto the second moment (i.e. $h_3, \, h_4 = 0$). A fourth order additive Legendre polynomial was allowed as a free parameter to correct for the continuum shape. A short MCMC code was used to establish initial guesses for each galaxy of recessional velocity (redshift) and $\sigma$ (this routine uses course measurements of redshift taken from SIMBAD \citep{Wenger2000} for its own initial guess and $\sigma = 200 \mathrm{km s^{-1}}$).
+	\subsection{Data Reduction of MUSE data}
+		\label{subsec:reductMUSE}
+		As stated in section \ref{subsec:MUSE}, we used the supplied, reduced data product, however it was noted that the sky for both IC1459 and IC426 had been over subtracted leading to large apparent absorption features (often with negative fluxes). To remove this over-subtraction, our own pseudo-sky subtraction routine was developed. The median spectrum was taken from four 20x20 spaxel boxes taken from each corner of the observation. After checking that no stellar continuum could be fitted to the spectrum (i.e. there was very little light from the galaxy contaminating our pseudo-sky spectrum), this spectrum was subtracted from each spaxel in the cube. The data-cubes were then trimmed to the central 30"x30" (150x150 spaxels).
+	
+	%\subsection{Data Analysis of MUSE data}
+	%	\label{subsec:analysisMUSE}
+	%	The MUSE cubes were analyzed in the same way as in section \ref{subsec:analysis}, though a S/N of 60 was used to make use of the superior data quality of the MUSE instrument.
 
-		Ionized gas detection was treated in a similar way to \citet{Sarzi2005}: only if an amplitude to noise ratio of greater than 4 was observed for the given bin would the detection be included. H$_\mathrm{\delta}$ is detected in 3/10 galaxies and [NI] is redshifted out of the spectral range is 3/10 galaxies.
+	%	In addition, to make use of the extended wavelength range of MUSE over VIMOS, the emission lines, [NII], [OI], [SII] and H$_\mathrm{\alpha}$, were also fitted alongside [OIII], H$_\mathrm{\beta}$, H$_\mathrm{\gamma}$, H$_\mathrm{\delta}$ and [NI], as in the VIMOS cubes. This allows the use the Baldwin, Phillips and Terlevich (BPT) diagrams to map the dominant source of ionization (see section \ref{subsec:BPT})
 
+\section{Data Analysis of VIMOS data}
+	\label{sec:analysis}
+	The analysis was nearly identical for data from the two instruments. The only differences being that the MUSE cubes were binned to a high Signal to Noise ratio (S/N) and the emission lines kinematics were allowed to vary up to the fourth moment (i.e. $h_3$ and $h_4$ were allowed to vary), whilst emission line within the VIMOS data was only allow to vary to the second moment (i.e. $h_3 \, h_4 = 0$). Finally the VIMOS data seemed to become unreliable below the calcium doublet, Ca4227, so a lower cut was applied at 4200 \AA. 
+
+
+	The cube was then spatially binned using Voronoi Binning technique \citep{Cappellari2003} to a uniform Signal to Noise ratio (S/N), defined to be the ratio of the medians of the spatially integrated cube and the spatially integrated noise spectrum, of 30 for VIMOS data and 60 for MUSE data. %Below about the calcium doublet, Ca4227, the observed spectrum tended to become unresponsive and so a hard cut lower cut was applied at 4200 \AA. 
+	When calculating total flux or any parameter dependent on total flux, only the wavelength range common to all bins was used (the quadrants have slightly different wavelength ranges), otherwise this was computed individually for each bin in order to preserve as much as information as possible.
+
+	Following this the cubes were analyzed using the \textsc{pPXF} package \citep{Cappellari2004} to find a best fit spectrum by stacking the Miles empirical stellar spectra \citep{Sanchez-Blazquez2006} convolved with a line-of-sight velocity distribution (LOSVD) given by a Gaussian-like distribution, allowed to vary up to the 4th Gauss-Hermite moment (i.e. the LOSVD could be characterized by 4 parameters: recessional velocity, $v$; line-of-sight velocity dispersion, $\sigma$ and the 3rd and 4th Gauss-Hermite moments, $h_3$ and $h_4$). To allow accurate estimation of the uncertainties in these values, a simple Monty Carlo (MC) method with 1000 repeats was used. In each iteration, random noise, with an amplitude comparable to the noise propagated through the data reduction pipeline, was added to the original bestfit spectrum.
+
+	In an attempt to combat template mismatch in the fitting of emission lines, we follow the recipe set out in \citet{Sarzi2005}. This is a three step process:
+	\begin{enumerate}
+		\item the region encompassing $\pm 300 \mathrm{km s^{-1}}$ around each emission line's rest frame wavelength is masked, and the stellar spectrum is fitted.
+		\item The kinematics of the stellar spectrum is then fixed to the kinematics found in Step 1. The region around the [OIII] line is unmasked and fitted. In VIMOS data, the line is given just 2 free kinematic moments ($h_3 \, h_4 = 0$), whereas in MUSE data [OIII] is given 4 free moments ($h_3$ and $h_4$ are free to vary). 
+		\item All emission lines are unmasked, but have their kinematics fixed to that found for [OIII] in Step 2. The emission lines are therefore being fitted for their amplitudes only. 
+	\end{enumerate}
+
+	All steps are repeated with the MC method described above to propagate uncertainties and include a tenth order multiplicative Lagrange polynomial to account for continuum emission. An emission line measurement is only considered a detection using the Amplitude to Noise (A/N, defined as the median noise in the region $\pm 300 \mathrm{km s^{-1}}$). For [OIII], a measurement was considered a detection if $(\mathrm{A/N})_\mathrm{[OIII]} \ge 4$; for all other lines, i, except [NI], a detection was recorded if [OIII] was detected in the same bin and if $(\mathrm{A/N})_\mathrm{i} \ge 3$; while a detection of [NI] required a detection of H$_\beta$ and $(\mathrm{A/N})_\mathrm{[N.I]} \ge 4$. This is in keeping with \citet{Sarzi2005}. In the VIMOS data, H$_\mathrm{\delta}$ is detected in 3/10 galaxies and [NI] is redshifted out of the spectral range is 3/10 galaxies.
+
+	A short MCMC code was used to establish initial guesses for each galaxy of recessional velocity (redshift) and $\sigma$ (this routine uses course measurements of redshift taken from SIMBAD \citep{Wenger2000} for its own initial guess and $\sigma = 200 \mathrm{km s^{-1}}$).
+
+	%In this way the [OIII] doublet, H$_\mathrm{\beta}$, H$_\mathrm{\gamma}$, H$_\mathrm{\delta}$ and [NI] emission lines are included in the fit. A fourth order additive Legendre polynomial was allowed as a free parameter to correct for the continuum shape. A short MCMC code was used to establish initial guesses for each galaxy of recessional velocity (redshift) and $\sigma$ (this routine uses course measurements of redshift taken from SIMBAD \citep{Wenger2000} for its own initial guess and $\sigma = 200 \mathrm{km s^{-1}}$).
+
+	%Ionized gas detection was treated in a similar way to \citet{Sarzi2005}: only if an amplitude to noise ratio of greater than 4 was observed for the given bin would the detection be included. H$_\mathrm{\delta}$ is detected in 3/10 galaxies and [NI] is redshifted out of the spectral range is 3/10 galaxies.
+
+	To make use of the extended wavelength range of MUSE over VIMOS, the emission lines, [NII], [OI], [SII] and H$_\mathrm{\alpha}$, were also fitted alongside [OIII], H$_\mathrm{\beta}$, H$_\mathrm{\gamma}$, H$_\mathrm{\delta}$ and [NI], as in the VIMOS cubes. This allows the use the Baldwin, Phillips and Terlevich (BPT) diagrams to map the dominant source of ionization (see section \ref{subsec:BPT}).
 
 
 \section{Kinematics}
@@ -110,35 +142,84 @@ $^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Ita
 
 	The following briefly describe the observations and results of each of the sample. %It is also worth noting that many maps have been clipped in the color axis, to allow the more detailed structures to not be overwhelmed by the extremes. 
 
-	\textbf{IC 1459} is a known to contain a KDC. This is clearly seen in our velocity map (Fig. \ref{fig:stellar_vel}). It is also known to have ionized gas counter rotating to the decoupled core. This is again seen by comparing Fig. \ref{fig:stellar_vel} with Fig. \ref{fig:gas_vel}. Our field of view is not large enough to investigate if the gas aligns with the outer galaxy.
+	\textbf{IC 1459} is known to contain a KDC. This is clearly seen in both the VIMOS and MUSE velocity maps (Fig. \ref{fig:stellar_vel}, \ref{fig:MUSEstellar_vel}). It is also known to have ionized gas counter rotating to the decoupled core. This is again seen by comparing Fig. \ref{fig:stellar_vel} with \ref{fig:gas_vel} and \ref{fig:MUSEstellar_vel} with \ref{fig:MUSEgas_vel}. From the MUSE velocity maps it can be seen that the gas is not coupled to the outer parts of the galaxy either. The KDC appears to be embedded in a slow rotator, though the KDC contaminates the $\lambda_{Re}$ measurement such that it is classified as a Fast Rotator. This is consistent with Section \ref{subsec:KDCsize}.
 
-	\textbf{IC 1531} seems to contain a KT. This galaxy has a very limited detection of ionized gas concentrated in the centre (with the exception of [NI] (Fig. \ref{fig:NI_eqW}), which is more dispersed).
+	\textbf{IC 1531} seems to contain a KT. This galaxy has a very limited detection of ionized gas concentrated in the center (with the exception of [NI] (Fig. \ref{fig:NI_eqW}), which is more dispersed).
 
-	\textbf{IC 4296} appears to have KT, though this may be a quadrant feature. There is potentially 2 peaks in all of the gas intensity maps, one at the centre of the galaxy and one to the south-east which is not seen in the image (total flux/collapsed cube).
+	\textbf{IC 4296} appears to have KT, though this may be a quadrant feature. There is potentially 2 peaks in all of the gas intensity maps, one at the center of the galaxy and one to the south-east which is not seen in the image (total flux/collapsed cube).
 
-	\textbf{NGC 0612} has a large dust lane to the east of the apparent centre of the galaxy perpendicular to the axis of rotation. The dust lane is also seen as a lower velocity dispersion (Fig \ref{fig:stellar_sigma}). Dust lanes generally imply a disky galaxy: indeed this seems to be the case here as the dust lane is aligned with the plane of the disk. The kinematic maps show NF. The dust lane also contains large amounts of gas. 
+	\textbf{NGC 0612} has a large dust lane to the east of the apparent center of the galaxy perpendicular to the axis of rotation. The dust lane is also seen as a lower velocity dispersion (Fig \ref{fig:stellar_sigma}). Dust lanes generally imply a disky galaxy: indeed this seems to be the case here as the dust lane is aligned with the plane of the disk. The kinematic maps show NF. The dust lane also contains large amounts of gas. 
 
-	\textbf{NGC 1399}, the central galaxy of the Fornax Cluster \citep{Jordan2007}, is known to have kinematic twist (see MUSE map in \citet{Zieleniewski2017}), however this is not visible in our map. This is partly due to the twist being on a scale of about the VIMOS field of view and partly due to the quadrant features in our maps. We have used this classification none the less. Only H$_\mathrm{\beta}$ and H$_\mathrm{\delta}$ was detected, and only at very low levels. [NI] was redshifted out of the VIMOS spectral range.
+	\textbf{NGC1316} (Fornax A) was not observed with VIMOS, however the MUSE maps show it to have a clear rotation signature (Fig. \ref{fig:MUSEstellar_vel}), though disturbed kinematics (e.g. Fig. \ref{fig:MUSEstellar_sigma}). The ionized gas is very clumpy and has no rotation (Fig. \ref{fig:MUSEgas_vel}).
+
+	\textbf{NGC 1399}, the central galaxy of the Fornax Cluster \citep{Jordan2007}, is known to have kinematic twist (see MUSE map in \citet{Zieleniewski2017}) on the scale of our MUSE field of view (reduced to 30"). Very little ionized gas was detected. 
 
 	\textbf{NGC 3100} is has NF in the stellar kinematics, however there is significant amount of ionized gas, which seems to be split into two clouds. This is most obviously seen in Fig. \ref{fig:Hbeta_eqW}. The gas also seems to have a non-standard rotation, possibly linked to its spacial distribution. 
 
 	\textbf{NGC 3557} is known to be FR with very high velocities, especially considering it's size, with NF. In our maps, there some significant quadrant effects. NGC 3557 also has a very dispersed, non-centrally concentrated H$_\mathrm{\beta}$ distribution. 
 
-	\textbf{NGC 7075} appears to have NF, though with quite slow velocities. There is some H$_\mathrm{\beta}$ detected at the very centre of the galaxy. 
+	\textbf{NGC 7075} appears to have NF, though with quite slow velocities. There is some H$_\mathrm{\beta}$ detected at the very center of the galaxy. 
 
 	\textbf{PKS 0718-34} is a KDC, though S/N issues mean that as in IC 1459, the galaxy cannot be seen beyond the core. It has very little gas detected, though the often faint $H_\mathrm{\delta}$ line is detected. [NI] is redshifted out of the VIMOS spectral range.
 
 	\textbf{ESO 443-G024} is consistent with a NR. It has a very dispersed H$_\mathrm{\beta}$ (similar to NGC 3557 (Fig. \ref{fig:Hbeta_eqW})).
 
+	\subsection{In/Out-flows}
+		\label{subsec:inflows}
 
-	
+
+\section{Absorption Line Strengths and Stellar Populations}
+	\label{sec:stellarPop}
+	Absorption line strengths were measured using \textsc{python} code developed by \_\_\_\_\_\_. We use the bandpasses defined in \_\_\_\_\_\_. 
+
+	We measure the line strengths in several steps:
+	\begin{enumerate}
+		\item Firstly we subtracted any fitted emission lines from the spectra and de-redshift to the rest frame. This included removing emission lines that we did not consider a detection. The spectrum is then convolved to a FWHM of 8.4\AA in order to match the LIS system \citep{Vazdekis2010}. The absorption line strengths of this stellar-only spectra was measured. This is the principle observation, $EW_{i,obs}$.
+		\item From the reported weightings of the stellar templates (and multiplicative polynomials) we built a spectra that is unconvolved with the LOSVD, which we measure the line strength for. This is the unconvolved bestfit and the measured line strengths are $EW_{i,unc}$.
+		\item We measure the line strengths for the best-fitting spectrum (with emission lines subtracted and de-redshifted). This is the convolved bestfit with line strengths being $EW_{i,con}$.
+		\item Finally, we use the ratio of the line strengths of the unconvolved and convolved bestfits as a correction factor for velocity dispersion. 
+	\end{enumerate}
+	The final value is therefore:
+	\begin{equation}
+	EW_i = \frac{EW_{i, unc}}{EW_{i, con}} EW_{i, obs}
+	\end{equation}
+
+	To test the routine we measured the absorption line strength for the SAURON project \citep{Kuntschner2006} galaxies within a radius of $R_e/8$ and compare to the measurements found by \citet{Vazdekis2010}. We found a mean difference of 0.29 \AA and a spread of 0.61 \AA between our measurements and \citet{Vazdekis2010}.
+
 
 
 \section{Discussion}
 	\label{sec:discuss}
+	\subsection{Selection Bias}
+	\label{subsec:bias}
+	It was originally intended that this sample should be volume limited, however the selection criteria for the parent sample \citep{Ekers1989} are based on apparent qualities rather than absolute (radio flux density and apparent V-band apparent magnitude). The effect is shown as redshift bias in figure \ref{fig:redshift_bias}. This shows a clear redshift dependence in $P_\mathrm{2.7 GHz}$ as well as (with the exception of NGC 612, a known radio galaxy anomaly) a bias towards low redshift for higher $\lambda_{Re}$. Interestingly, though $M_k$ is well spread in redshift. 
+
+	\subsection{BPT}
+	\label{subsec:BPT}
+	The BPT diagrams can be useful diagnostics for the dominant source of ionization. In the age of the IFU, the diagrams can be used in a spatially resolved manner to produce maps of ionizing source. 
+
+	It is worth taking a moment to 
+
+	Much of the current literature use the BPT diagram as an absolute diagnostic tool, were everything below the \_\_\_\_\_\_\_\_\_\_ line is assumed to be entirely due to star formation, while everything above both the \_\_\_\_\_\_ and the \_\_\_\_\_ lines is due to a Seyfert 2 type AGN, and the remaining region is due to a LINER type AGN. This is not how it was originally intended to be used. In fact the \_\_\_\_\_\_\_\_ line marks the upper limit of where star formation \textit{could} be the sole source of ionization. Above the \_\_\_\_\_ line is where an AGN \textit{could} be the sole source of ionization. The region between is where is were either \textit{could} be the sole source of ionization. 
+
+
+
+
+
+
+
+	\subsection{KDC stellar populations}
+	\label{subsec:KDCsize}
+	The relationship between the size of a KDC, it's age and the properties of the host galaxy was first set out in \citet{McDermid2006}. Here is was found that two populations of KDCs existed: the first was very small, but could be any age, and was typically embedded in a fast rotator host. The second was any size, but old, and was embedded in a slow rotator.  
+
+
+	Figure \ref{fig:KDCsize} shows all KDCs in our sample fit the relationship found by the SAURON group: they are all large and old. This adds weight to the suggestion that they are embedded in intrinsically slow rotators. Given the distance of our objects, we lack the resolution to properly resolve the small KDCs with in the fast rotators, despite the fast rotators being biased to be observed at a lower redshift.
+
+
 
 \section{Conclusion}
 	\label{sec:conc}
+	We have presented the VIMOS and MUSE observations of our sample of low-powered radio galaxies. We find a diverse range of kinematic features and classifications as well as varying detection rates in both brightness and extent. 
 
 
 
