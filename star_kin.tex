@@ -81,7 +81,7 @@ $^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Ita
 		\label{subsec:reduct}
 		The data reduction pipeline was produced using \textsc{Py3D}, a suite of programs based on those developed for Califa DR1 \citep{Sanchez2011, Husemann2013} and later updated for VIMOS by \citet{Husemann2014}. This pipeline accounts for many of the known issues with VIMOS such as bad fibers and strong flexure. A brief outline is the additional steps to accounts for these is given below, while detailed descriptions can be found in \citet{Sanchez2011} for the standard reduction steps (bias subtraction, flat-fielding and wavelength and flux calibrations) and \citep{Husemann2014} for the VIMOS specific modifications. 
 		\begin{itemize}
-		\item The known bad pixels and flexure offsets are included when completing the wavelength calibration. In testing, this was found to be robust except for the blue end of the spectrum ($\lambda < 4300 \AA$) when using the blue HR grism \citep{Husemann2014}. Indeed, we found that the spectrum below 4200\AA was strongly suppressed and was therefore discarded.
+		\item The known bad pixels and flexure offsets are included when completing the wavelength calibration. In testing, this was found to be robust except for the blue end of the spectrum ($\lambda < 4300 \AA$) when using the blue HR grism \citep{Husemann2014}. Indeed, we found that the spectrum below the 4000\AA break was not robust and was therefore discarded.
 		\item Flexure also gives an offset to flat-fielding and while this known to be only up to $\pm0.5$pixels, this is also taken into account.
 		\item The dense packing of the fibers onto the CCD means that cross-talk is occurs and is extracted using \citep{Horne1986}. 
 		\end{itemize}
@@ -110,7 +110,7 @@ $^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Ita
 
 \section{Data Analysis of VIMOS data}
 	\label{sec:analysis}
-	The analysis was nearly identical for data from the two instruments. The only differences being that the MUSE cubes were binned to a high Signal to Noise ratio (S/N) and the emission lines kinematics were allowed to vary up to the fourth moment (i.e. $h_3$ and $h_4$ were allowed to vary), whilst emission line within the VIMOS data was only allow to vary to the second moment (i.e. $h_3 \, h_4 = 0$). Finally the VIMOS data seemed to become unreliable below the calcium doublet, Ca4227, so a lower cut was applied at 4200 \AA. 
+	The analysis was nearly identical for data from the two instruments. The only differences being that the MUSE cubes were binned to a high Signal to Noise ratio (S/N) and the emission lines kinematics were allowed to vary up to the fourth moment (i.e. $h_3$ and $h_4$ were allowed to vary), whilst emission line within the VIMOS data was only allow to vary to the second moment (i.e. $h_3 \, h_4 = 0$). 
 
 
 	The cube was then spatially binned using Voronoi Binning technique \citep{Cappellari2003} to a uniform Signal to Noise ratio (S/N), defined to be the ratio of the medians of the spatially integrated cube and the spatially integrated noise spectrum, of 30 for VIMOS data and 60 for MUSE data. %Below about the calcium doublet, Ca4227, the observed spectrum tended to become unresponsive and so a hard cut lower cut was applied at 4200 \AA. 
@@ -185,6 +185,38 @@ $^{3}$INAF - Istituto di Radioastronomia, Via P. Gobetti 101, 40129 Bologna, Ita
 	\end{equation}
 
 	To test the routine we measured the absorption line strength for the SAURON project \citep{Kuntschner2006} galaxies within a radius of $R_e/8$ and compare to the measurements found by \citet{Vazdekis2010}. We found a mean difference of 0.29 \AA and a spread of 0.61 \AA between our measurements and \citet{Vazdekis2010}.
+
+	\begin{table}
+		\caption{Comparisons to the literature}
+		\label{tab:litAbsorption}
+		\begin{tabular}{c}
+			\hline
+			\hline
+			Index 		& N$_{gals}	& Offset 	& Dispersion \\
+						& 			& $\AA$		& $\AA$ \\
+			\hline
+			\multicolum{4}{c}{\citet{Vazdekis2010}} \\
+			\hline
+			H$_\beta$ 	& 46		& -0.02		& 0.25	\\
+			Fe5015		& 46		& 0.66		& 0.34	\\
+			Mg$_b$ 		& 46		& 0.06		& 0.33	\\
+			\hline
+			\multicolum{4}{c}{\citet{Rampazzo2005} (VIMOS)}
+			\hline
+			G4300 		& 3 		& 			& \\
+			Fe4383 		& 3 		& 			& \\
+			Ca4455 		& 3 		& 			& \\
+			Fe4531 		& 3 		& 			& \\
+			H$_\beta$ 	& 3 		& 			& \\
+			Fe5015 		& 3 		& 			& \\
+			Mg$_b$ 		& 3 		& 			& \\
+			\hline
+			\multicolum{4}{c}{\citet{Rampazzo2005} (MUSE)}
+			\hline
+
+			\hline
+		\end{tabular}
+	\end{table}
 
 
 

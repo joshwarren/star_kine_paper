@@ -61,17 +61,6 @@ import cPickle as pickle
 from checkcomp import checkcomp
 cc = checkcomp()
 
-# # Give axes a saveTo property
-# plt.axes.saveTo = property(lambda self:str())
-# # Give axes an x and y on figure grid property
-# plt.axes.figx = property(lambda self:int())
-# plt.axes.figy = property(lambda self:int())
-# # give axes a property to hold a colorbar axes
-# plt.axes.cax = property(lambda self:plt.axes())
-# # give axes a property to hold 2 additional axes for showing other axis
-# plt.axes.ax2 = property(lambda self:plt.axes())
-# plt.axes.ax3 = property(lambda self:plt.axes())
-
 vin_dir = '%s/Data/vimos/analysis' % (cc.base_dir)
 vin_dir_cube = '%s/Data/vimos/cubes' % (cc.base_dir)
 ain_dir = '%s/Data/alma' % (cc.base_dir)
@@ -172,8 +161,8 @@ def add_CO(ax, galaxy, header, close=False):
 
 #-----------------------------------------------------------------------------
 def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv", 
-	plots=False, residual=False, CO=False, show_bin_num=False,
-	D=None, **kwargs):	
+	plots=False, residual=False, CO=False, show_bin_num=False, limits=None,
+	D=None, opt='kin', **kwargs):	
 
 	SN_target = 30
 	data_file =  "%s/galaxies.txt" % (vin_dir)
@@ -197,8 +186,8 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 		if not os.path.exists(CO_image_dir): CO = False
 
 	dataCubeDirectory = "%s/%s.cube.combined.corr.fits" % (vin_dir_cube, galaxy)
-	output = "%s/%s/results/%s" % (out_dir, galaxy, wav_range_dir)
-	out_nointerp = "%s/Documents/star_kin_paper/plots" % (cc.home_dir)
+	output = "%s/%s/%s" % (out_dir, galaxy, opt)
+	out_nointerp = "%s/Documents/star_kin_paper/plots2" % (cc.home_dir)
 	# vin_dir_gasMC = "%s/%s/gas_MC" % (vin_dir, galaxy)
 	out_pickle = '%s/pickled' % (output)
 
@@ -210,7 +199,7 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 
 	# Load pickle file from pickler.py
 	if D is None:
-		pickleFile = open("%s/dataObj_%s.pkl" % (out_pickle, wav_range), 'rb')
+		pickleFile = open("%s/dataObj.pkl" % (out_pickle), 'rb')
 		D = pickle.load(pickleFile)
 		pickleFile.close()
 
@@ -231,10 +220,14 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 	CBLabel = r"Flux (erg s$^{-1}$ cm$^{-2}$)"
 
 	saveTo = "%s/%s_stellar_img.png" % (out_nointerp, galaxy)
-	print saveTo
-	fmin, fmax = set_lims(D.flux, positive=True)
+	
+	if limits is not None:
+		fmin, fmax = limits['flux']
+	else:
+		fmin, fmax = set_lims(D.flux, positive=True)
 
-	ax = plot_velfield_nointerp(D.x, D.y, D.bin_num, D.xBar, D.yBar, D.flux, vmin=fmin, 
+	ax = plot_velfield_nointerp(D.x, D.y, D.bin_num, D.xBar, D.yBar, D.flux, header,
+		vmin=fmin, 
 		vmax=fmax, nodots=True, show_bin_num=show_bin_num, colorbar=True, 
 		label=CBLabel, cmap='gist_yarg', galaxy=galaxy.upper(), #header=header, 
 		#signal_noise=D.SNRatio, signal_noise_target=SN_target, 
@@ -262,12 +255,17 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 		f_title = "%s Flux" % (c_title)
 		# from header
 		fCBtitle = r"Flux (erg s$^{-1}$ cm$^{-2}$)"
-		f_min, f_max = set_lims(D.e_line[c].flux, positive=True)
+
+
+		if limits is not None:
+			f_min, f_max = limits['%s_flux'%(c)]
+		else:
+			f_min, f_max = set_lims(D.e_line[c].flux, positive=True)
 		
 		saveTo = "%s/%s_%s_img.png" % (out_nointerp, galaxy, c)
 		
 		ax = plot_velfield_nointerp(D.x, D.y, D.bin_num, D.xBar, D.yBar, D.e_line[c].flux, 
-			vmin=f_min, vmax=f_max, colorbar=True, nodots=True, label=fCBtitle, 
+			header, vmin=f_min, vmax=f_max, colorbar=True, nodots=True, label=fCBtitle, 
 			cmap = 'gist_yarg', save=saveTo, galaxy=galaxy.upper()) #, header=header)
 			
 		if plots: plt.show()
@@ -278,12 +276,16 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 		eq_title = "%s Equivalent Width" % (c_title)
 		eqCBtitle = r"Equivalent Width ($\AA$)"
 
-		eq_min, eq_max = set_lims(D.e_line[c].equiv_width, positive=True)
+
+		if limits is not None:
+			eq_min, eq_max = limits['%s_equiv_width'%(c)]
+		else:
+			eq_min, eq_max = set_lims(D.e_line[c].equiv_width, positive=True)
 
 		saveTo = "%s/%s_%s_eqW.png" % (out_nointerp, galaxy, c)
 
 		ax = plot_velfield_nointerp(D.x, D.y, D.bin_num, D.xBar, D.yBar, 
-			D.e_line[c].equiv_width, vmin=eq_min, vmax=eq_max, colorbar=True, 
+			D.e_line[c].equiv_width, header, vmin=eq_min, vmax=eq_max, colorbar=True, 
 			nodots=True, label=eqCBtitle, galaxy=galaxy.upper(), #header=header, 
 			save=saveTo)
 		if CO:
@@ -355,17 +357,21 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 				utitle = "Ionised" + im_type + " Gas Uncertainty " + title + " Map"
 				title = "Ionised" + im_type + " Gas\n" + title + " Map"
 # ------------============ Setting v range ==============----------
-			vmin, vmax = set_lims(D.components[f].plot[k], positive=positive, 
-				symmetric=symmetric)
-			v_uncert_min, v_uncert_max = set_lims(D.components[f].plot[k].uncert, 
-				positive=True)
+
+			if limits is not None:
+				vmin, vmax = limits['%s_%s'(c,k)]
+			else:
+				vmin, vmax = set_lims(D.components[f].plot[k], positive=positive, 
+					symmetric=symmetric)
+			# v_uncert_min, v_uncert_max = set_lims(D.components[f].plot[k].uncert, 
+			# 	positive=True)
 
 # ------------==== Plot velfield - no interperlation ====----------
 			# Field plot
 			saveTo = ("%s/%s_%s_%s.png" % (out_nointerp, galaxy, c, k))
 
 			ax = plot_velfield_nointerp(D.x, D.y, D.bin_num, D.xBar,
-				D.yBar, D.components[f].plot[k], vmin=vmin, vmax=vmax, #flux_type='notmag',
+				D.yBar, D.components[f].plot[k], header, vmin=vmin, vmax=vmax, #flux_type='notmag',
 				nodots=True, show_bin_num=show_bin_num, colorbar=True, 
 				label=CBLabel,galaxy = galaxy.upper(),
 				signal_noise=D.SNRatio, #header=header, 
@@ -498,13 +504,87 @@ def plot_results(galaxy, discard=0, wav_range="", vLimit=2, norm="lwv",
 			saveTo = "%s/lineratio/%s_%s_%s_LR.png" % (out_nointerp, galaxy, cB, cA)
 			
 			ax = plot_velfield_nointerp(D.x, D.y, D.bin_num, D.xBar, D.yBar,
-				line_ratio, vmin=lr_min, vmax=lr_max, colorbar=True,
+				line_ratio, header, vmin=lr_min, vmax=lr_max, colorbar=True,
 				nodots=True, label=lrCBtitle, #header=header, 
 				show_bin_num=show_bin_num, galaxy = galaxy.upper(),
 				save=saveTo)
 
 			if CO:
 				add_CO(ax, galaxy, header)
+
+
+
+def find_limits(wav_range=""):
+	print 'Finding limits'
+	galaxies = ['ic1459', 'ic1531', 'ic4296', 'ngc0612', 'ngc1399', 'ngc3100', 
+		'ngc3557', 'ngc7075', 'pks0718-34', 'eso443-g024']
+
+	if wav_range:
+		wav_range_dir = wav_range + "/"
+	else:
+		wav_range_dir = ""
+
+	limits = {}
+	for galaxy in galaxies:
+		print galaxy
+		output = "%s/%s/results/%s" % (out_dir, galaxy, wav_range_dir)
+		out_pickle = '%s/pickled' % (output)
+
+		pickleFile = open("%s/dataObj_%s.pkl" % (out_pickle, wav_range), 'rb')
+		D = pickle.load(pickleFile)
+		pickleFile.close()
+
+		fmin, fmax = set_lims(D.flux, positive=True)
+		try:
+			limits['flux'] = [min(fmin, limits['flux'][0]), max(fmax, limits['flux'][1])]
+		except:
+			limits['flux'] = [fmin, fmax]
+			
+		for c in D.e_components:
+			f_min, f_max = set_lims(D.e_line[c].flux, positive=True)
+			try:
+				limits['%s_flux'%(c)] = [min(f_min, limits['%s_flux'%(c)][0]), 
+					max(f_max, limits['%s_flux'%(c)][1])]
+			except:
+				limits['%s_flux'%(c)] = [f_min, f_max]
+			
+			eq_min, eq_max = set_lims(D.e_line[c].equiv_width, positive=True)
+			try:
+				limits['%s_equiv_width'%(c)] = [min(eq_min, limits['%s_equiv_width'%(c)][0]), 
+					max(eq_max, limits['%s_equiv_width'%(c)][1])]
+			except:
+				limits['%s_equiv_width'%(c)] = [eq_min,eq_max]
+
+		for c in D.independent_components:
+			f = c
+			if c == "gas":
+				f = 'Hbeta'
+			elif c == "SF":
+				f = '[OIII]5007d'
+			elif c == "Shocks":
+				f = 'Hbeta'
+			for k in D.components[f].plot.keys():
+				symmetric=False
+				positive=False
+					
+				if k == "vel":
+					symmetric=True
+				elif  k == "sigma":
+					positive = True
+				elif k == "h3":
+					symmetric = True
+
+
+				vmin, vmax = set_lims(D.components[f].plot[k], positive=positive, 
+					symmetric=symmetric)
+				try:
+					limits['%s_%s'%(c,k)] = [min(vmin, limits['%s_%s'%(c,k)][0]), 
+						max(vmax, limits['%s_%s'%(c,k)][1])]
+				except:
+					limits['%s_%s'%(c,k)] = [vmin, vmax]
+
+		del D
+	return limits
 
 
 
@@ -522,8 +602,9 @@ if __name__ == '__main__':
 	discard = 2 # rows of pixels to discard- must have been the same 
 			#	for all routines 
 	vLimit = 2 #
+	# limits = find_limits(wav_range=wav_range)
 	for galaxy in galaxies:
 		print galaxy
 
 		plot_results(galaxy, discard=discard, vLimit=vLimit, CO=True, norm='lwv',
-			wav_range=wav_range, plots=False, residual = "median")
+			wav_range=wav_range, plots=False, residual = "median", opt='kin')#limits=limits)
